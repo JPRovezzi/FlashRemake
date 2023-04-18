@@ -1,0 +1,65 @@
+1
+
+
+
+
+ **** FLASH CALCULATION ****
+ MODEL USED FOR LIQUID PHASE NON-IDEALITY: UNIFAC
+
+
+ COMPONENTS : "llecalas2"                                                             
+
+
+ SUB GROUPS :  1  2 17
+ MAIN GROUPS:  1  1  7
+ COMPONENT
+       1       2  4  0
+       2       0  0  1
+
+
+
+ GROUP R- AND Q-VALUES
+
+   1    0.9011    0.8480
+   2    0.6744    0.5400
+  17    0.9200    1.4000
+
+
+
+  INTERACTION PARAMETERS
+
+        0.000    1318.000
+      300.000       0.000
+
+
+
+ UNIFAC MOLECULAR R AND Q
+
+    1         4.4998         3.8560
+    2         0.9200         1.4000
+
+
+
+ * * * FLASH NUMBER  1 * * *
+
+
+ TEMPERATURE =  298.0000 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 49.967            2 50.033
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00009435          0.99924425
+  ln(G 1)                      9.26781176          0.00002348
+   X( 2)                      0.99990565          0.00075575
+  ln(G 2)                      0.00000029          7.18770468
+
+ * SYSTEM IS STABLE *
+
