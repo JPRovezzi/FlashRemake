@@ -20,6 +20,7 @@ def write_input():
     '!           3-'infinite dilution parameters table (UNIFAC)'
     '!           4-'GC-EOS parameters'
     """
+    #Hola
     global Name,name1,Ncomp,Ngrup,folder_path,icalc,model1,ipr,iout,novap,ig,ipareq
     global T,P,Z
     file0  = open(folder_path + "name.dat","w")
