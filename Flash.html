@@ -4,6 +4,8 @@
 
 <h1 style="text-align: center;">"Flash-Calc"</h1>
 
+<p>Problem name:</p>
+<input type="text"  id="name" name="name" value="llecalas2">
 <p>Data input:</p>
 
 <code>
@@ -11,15 +13,16 @@
         OS:      
     </label>
     <select name="OS" id="OS"> 
-        <option value="Windows">
-            Windows
-        </option> 
         <option value="Linux_Ubuntu">
             Linux (Ubuntu)
+        </option> 
+        <option value="Windows">
+            Windows
         </option>
     </select> 
 
-<br> 
+    <br> 
+
     <label for="Model">
         Model:
     </label> 
@@ -31,8 +34,35 @@
             A-UNIFAC
         </option> 
     </select>
+    
+    <br> 
+
+    <label for="Parametes_table">
+        Parameters table:
+    </label> 
+    <select name="Parametes_table" id="Parametes_table"> 
+        <option value="1">
+            Liquid-Liquid
+        </option> 
+        <option value="2">
+            Vapor-Liquid
+        </option> 
+        <option value="3">
+            Infinity dil.
+        </option> 
+    </select>
+
+    <br>
+    Number of components:
+    <input type="text"  id="name" name="name" value="0">
 </code>
 
+<br>
+<br>
+<br>
+<p>Comments:</p> 
+<textarea id="comment" name="comment" rows="4" cols="50">
+</textarea>
 
 </body>
 </html>
