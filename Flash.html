@@ -57,6 +57,50 @@
     <input type="text"  id="name" name="name" value="0">
 </code>
 
+
+
+<br>
+<label for="number">Enter number of selection boxes:</label>
+<input type="number" id="number" min="1" max="10" value="1">
+<button id="create">Create</button>
+<div id="container"></div>
+
+<script>
+// Get the elements from the document
+var number = document.getElementById("number");
+var create = document.getElementById("create");
+var container = document.getElementById("container");
+
+// Define some sample options for the selection boxes
+var options = ["Volvo", "Saab", "Mercedes", "Audi"];
+
+// Add a click event listener to the create button
+create.addEventListener("click", function() {
+  // Clear the container element
+  container.innerHTML = "";
+  // Get the number of selection boxes to create
+  var n = parseInt(number.value);
+  // Loop through the number and create the selection boxes
+  for (var i = 0; i < n; i++) {
+    // Create a new select element
+    var select = document.createElement("select");
+    // Loop through the options and create the option elements
+    for (var j = 0; j < options.length; j++) {
+      // Create a new option element
+      var option = document.createElement("option");
+      // Set the value and text of the option element
+      option.value = options[j].toLowerCase();
+      option.textContent = options[j];
+      // Append the option element to the select element
+      select.appendChild(option);
+    }
+    // Append the select element to the container element
+    container.appendChild(select);
+  }
+});
+</script>
+
+
 <br>
 <br>
 <br>
