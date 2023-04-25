@@ -26,7 +26,7 @@
     <label for="Model">
         Model:
     </label> 
-    <select name="Model" id="Model"> 
+    <select name="Model" id="model"> 
         <option value="UNIFAC">
             UNIFAC
         </option> 
@@ -37,10 +37,10 @@
     
     <br> 
 
-    <label for="Parametes_table">
+    <label for="Parameters_table">
         Parameters table:
     </label> 
-    <select name="Parametes_table" id="Parametes_table"> 
+    <select name="Parameters_table" id="par_table"> 
         <option value="1">
             Liquid-Liquid
         </option> 
@@ -51,35 +51,100 @@
             Infinity dil.
         </option> 
     </select>
-
+<!--
     <br>
     Number of components:
     <input type="text"  id="name" name="name" value="0">
+    -->
 </code>
 
 
 
 <br>
-<label for="number">Enter number of selection boxes:</label>
-<input type="number" id="number" min="1" max="10" value="1">
+<label for="number">Number of components:</label>
+<input type="number" id="number" min="2" max="10" value="2">
+<br>
+<br>
 <button id="create">Create</button>
 <div id="container"></div>
 
 <script>
 // Get the elements from the document
-var number = document.getElementById("number");
-var create = document.getElementById("create");
-var container = document.getElementById("container");
-
+var number      = document.getElementById("number");
+var create      = document.getElementById("create");
+var container   = document.getElementById("container");
+var par_table   = document.getElementById("par_table");
 // Define some sample options for the selection boxes
-var options = ["Volvo", "Saab", "Mercedes", "Audi"];
+if (par_table.value == "1"){
+    var options = ["None",
+    "(CH3)",
+    "(CH2)",
+    "(CH)",
+    "(C)",
+    "(CH2=CH)",
+    "(CH=CH)",
+    "(CH=C)",
+    "(CH2=C)",
+    "(ACH)",
+    "(AC)",
+    "(ACCH3)",
+    "(ACCH2)",
+    "(ACCH)",
+    "(OH)",
+    "(P1)",
+"(P2)",
+"(H2O)",
+"(ACOH)",
+"(CH3CO)",
+"(CH2CO)",
+"(CHO)",
+"(FURF)",
+"(COOH)",
+"(HCOOH)",
+"(CH3COO)",
+"(CH2COO)",
+"(CH3O)",
+"(CH2O)",
+"(CH-O)",
+"(FCH2O)",
+"(CH2CL)",
+"(CHCL)",
+"(CCL)",
+"(CH2CL2)",
+"(CHCL2)",
+"(CCL2)",
+"(CHCL3)",
+"(CCL3)",
+"(CCL4)",
+"(ACCL)",
+"(CH3CN)",
+"(CH2CN)",
+"(ACNH2)",
+"(CH3NO2)",
+"(CH2NO2)",
+"(CHNO2)",
+"(ACNO2)",
+"(CH2OH)2",
+"(DEOH)",
+"(C5H5N)",
+"(C5H4N)",
+"(C5H3N)",
+"(TCLE)",
+"(MFA)",
+"(DMFA)",
+"(TMS)",
+"(ME2SO)"
+];
+} else
+var options = ["Empty"]
 
 // Add a click event listener to the create button
 create.addEventListener("click", function() {
   // Clear the container element
   container.innerHTML = "";
   // Get the number of selection boxes to create
-  var n = parseInt(number.value);
+  //var n = parseInt(number.value);
+  var n = 10;
   // Loop through the number and create the selection boxes
   for (var i = 0; i < n; i++) {
     // Create a new select element
