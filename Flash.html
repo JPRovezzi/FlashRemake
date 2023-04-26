@@ -51,7 +51,15 @@
             Infinity dil.
         </option> 
     </select>
-<!--
+    <button id="set_par_table" onclick = "msgprint()">Set</button>
+
+<!--   
+    <form>
+        <input type = "button" onclick = ""
+    </form>
+ 
+    
+
     <br>
     Number of components:
     <input type="text"  id="name" name="name" value="0">
@@ -70,12 +78,23 @@
 
 <script>
 // Get the elements from the document
-var number      = document.getElementById("number");
-var create      = document.getElementById("create");
-var container   = document.getElementById("container");
-var par_table   = document.getElementById("par_table");
+var number          = document.getElementById("number");
+var create          = document.getElementById("create");
+var container       = document.getElementById("container");
+var par_table       = document.getElementById("par_table");
+//var set_par_table   = document.getElementById("set_par_table");
+var par_table_value = 0;
+function msgprint(){  
+            
+            var par_table_value = par_table.value
+            alert(par_table.value;
+            return par_table_value
+         }  ;
+//function manolo()
+//set_par_table.addEventListener("click", function manolo(par_table_value) {
+//})
 // Define some sample options for the selection boxes
-if (par_table.value == "1"){
+if (par_table_value == 1){
     var options = ["None",
     "(CH3)",
     "(CH2)",
