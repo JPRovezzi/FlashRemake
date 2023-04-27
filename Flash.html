@@ -85,7 +85,7 @@ var create          = document.getElementById("create");
 var container       = document.getElementById("container");
 var par_table       = document.getElementById("par_table");
 //var set_par_table   = document.getElementById("set_par_table");
-var par_table_value = 0;
+//var par_table_value = 0;
 function msgprint(){  
             
             var par_table_value = par_table.value
@@ -95,8 +95,17 @@ function msgprint(){
 //function manolo()
 //set_par_table.addEventListener("click", function manolo(par_table_value) {
 //})
-// Define some sample options for the selection boxes
-if (par_table_value == 1){
+
+
+// Add a click event listener to the create button
+create.addEventListener("click", function() {
+  // Clear the container element
+  container.innerHTML = "";
+  // Get the number of selection boxes to create
+  //var n = parseInt(number.value);
+  var par_table_value = parseInt(par_table.value);
+  // Define some sample options for the selection boxes
+  if (par_table_value == 1){
     var options = ["None",
     "(CH3)",
     "(CH2)",
@@ -113,58 +122,51 @@ if (par_table_value == 1){
     "(ACCH)",
     "(OH)",
     "(P1)",
-"(P2)",
-"(H2O)",
-"(ACOH)",
-"(CH3CO)",
-"(CH2CO)",
-"(CHO)",
-"(FURF)",
-"(COOH)",
-"(HCOOH)",
-"(CH3COO)",
-"(CH2COO)",
-"(CH3O)",
-"(CH2O)",
-"(CH-O)",
-"(FCH2O)",
-"(CH2CL)",
-"(CHCL)",
-"(CCL)",
-"(CH2CL2)",
-"(CHCL2)",
-"(CCL2)",
-"(CHCL3)",
-"(CCL3)",
-"(CCL4)",
-"(ACCL)",
-"(CH3CN)",
-"(CH2CN)",
-"(ACNH2)",
-"(CH3NO2)",
-"(CH2NO2)",
-"(CHNO2)",
-"(ACNO2)",
-"(CH2OH)2",
-"(DEOH)",
-"(C5H5N)",
-"(C5H4N)",
-"(C5H3N)",
-"(TCLE)",
-"(MFA)",
-"(DMFA)",
-"(TMS)",
-"(ME2SO)"
-];
-} else
-var options = ["Empty"]
-
-// Add a click event listener to the create button
-create.addEventListener("click", function() {
-  // Clear the container element
-  container.innerHTML = "";
-  // Get the number of selection boxes to create
-  //var n = parseInt(number.value);
+    "(P2)",
+    "(H2O)",
+    "(ACOH)",
+    "(CH3CO)",
+    "(CH2CO)",
+    "(CHO)",
+    "(FURF)",
+    "(COOH)",
+    "(HCOOH)",
+    "(CH3COO)",
+    "(CH2COO)",
+    "(CH3O)",
+    "(CH2O)",
+    "(CH-O)",
+    "(FCH2O)",
+    "(CH2CL)",
+    "(CHCL)",
+    "(CCL)",
+    "(CH2CL2)",
+    "(CHCL2)",
+    "(CCL2)",
+    "(CHCL3)",
+    "(CCL3)",
+    "(CCL4)",
+    "(ACCL)",
+    "(CH3CN)",
+    "(CH2CN)",
+    "(ACNH2)",
+    "(CH3NO2)",
+    "(CH2NO2)",
+    "(CHNO2)",
+    "(ACNO2)",
+    "(CH2OH)2",
+    "(DEOH)",
+    "(C5H5N)",
+    "(C5H4N)",
+    "(C5H3N)",
+    "(TCLE)",
+    "(MFA)",
+    "(DMFA)",
+    "(TMS)",
+    "(ME2SO)"
+    ];
+    } else
+    var options = ["Empty"]
   var n = 10;
   // Loop through the number and create the selection boxes
   for (var i = 0; i < n; i++) {
