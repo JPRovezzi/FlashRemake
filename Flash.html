@@ -256,22 +256,27 @@ create.addEventListener("click", function() {
     var options = ["Empty"]
   var n = 10;
   // Loop through the number and create the selection boxes
-  for (var i = 0; i < n; i++) {
+  //for (var i = 0; i < comp; i++){
+
+  //}
+  for (var j = 0; j < n; j++) {
     // Create a new select element
     var select = document.createElement("select");
     // Loop through the options and create the option elements
-    for (var j = 0; j < options.length; j++) {
+    for (var k = 0; k < options.length; k++) {
       // Create a new option element
       var option = document.createElement("option");
       // Set the value and text of the option element
-      option.value = options[j].toLowerCase();
-      option.textContent = options[j];
+      option.value = options[k].toLowerCase();
+      option.textContent = options[k];
       // Append the option element to the select element
       select.appendChild(option);
     }
     // Append the select element to the container element
     container.appendChild(select);
+    
   }
+  
 });
 </script>
 
