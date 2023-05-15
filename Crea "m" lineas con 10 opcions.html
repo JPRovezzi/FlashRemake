@@ -1,0 +1,84 @@
+<html>
+<head>
+    <body>
+        <div id="wrapper">
+        </div>
+        </body>
+<script>
+// Get the wrapper element for the input boxes
+var wrapper = document.getElementById("wrapper");
+
+// Create an input box for n
+//var nInput = document.createElement("input");
+//nInput.id = "nInput";
+//nInput.type = "number";
+//nInput.min = "1";
+//nInput.max = "5";
+//nInput.value = "1";
+//wrapper.appendChild(nInput);
+
+// Create an input box for m
+var mInput = document.createElement("input");
+mInput.id = "mInput";
+mInput.type = "number";
+mInput.min = "2";
+mInput.max = "10";
+mInput.value = "2";
+wrapper.appendChild(mInput);
+
+// Create a set button
+var setButton = document.createElement("input");
+setButton.id = "setButton";
+setButton.type = "button";
+setButton.value = "Set";
+wrapper.appendChild(setButton);
+
+// Add an onclick event listener to setButton
+setButton.onclick = function() {
+  // Get the selected value of n and m
+  //var n = nInput.value;
+  var m = mInput.value;
+  var n = 10;
+  
+  // Remove any existing selection boxes for each m line
+  var boxes = document.getElementsByClassName("box");
+  while (boxes.length > 0) {
+    boxes[0].remove();
+  }
+  
+  // Create n selection boxes for each m line
+  for (var i = 0; i < m; i++) {
+    // Create a container element for each line
+    var line = document.createElement("div");
+    line.className = "line";
+    wrapper.appendChild(line);
+    
+    // Create a label for each line
+    var label = document.createElement("span");
+    label.textContent = "Line " + (i + 1) + ": ";
+    line.appendChild(label);
+    
+    // Create n selection boxes for each line
+    for (var j = 0; j < n; j++) {
+      // Create a selection box
+      var box = document.createElement("select");
+      box.className = "box";
+      
+      // Add some dummy options for each box
+      for (var k = 0; k < 5; k++) {
+        var option = document.createElement("option");
+        option.value = k;
+        option.text = "Option " + (k + 1);
+        box.appendChild(option);
+      }
+      
+      // Append the box to the line
+      line.appendChild(box);
+    }
+  }
+};
+</script>
+
+</head>
+
+</html>
