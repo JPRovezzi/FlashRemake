@@ -120,8 +120,10 @@ downloadButton.onclick = function() {
     for (var j = 0; j < inputs.length; j++) {
       lineValues.push(inputs[j].value);
     }
-    if (i % 2 == 0)
-    values.push("Component " + ((i/2)+1) + ":, " + lineValues.join(", "));
+    if (i == 0)
+    values.push("Component " + "1" + ": " + lineValues.join(", "));
+    else if (i % 2 == 0)
+    values.push("Component " + ((i/2)+1) + ": " + lineValues.join(", "));
     else
     values.push("Component " + ((i+1)/2) + ":, " + lineValues.join(", "));
   }

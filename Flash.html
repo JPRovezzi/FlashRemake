@@ -9,7 +9,7 @@
 <p>Problem name:</p>
 <input type="text"  id="problem_name" name="name" value="llecalas2">
 <p>Data input:</p>
-
+<!--
 <code>
     <label for="OS">
         OS:      
@@ -53,9 +53,10 @@
             Infinity dil.
         </option> 
     </select>
+    <br>
     <button id="set_par_table" onclick = "msgprint()">Set</button>
 
-<!--   
+   
     <form>
         <input type = "button" onclick = ""
     </form>
@@ -65,40 +66,38 @@
     <br>
     Number of components:
     <input type="text"  id="name" name="name" value="0">
-    -->
+    
 </code>
-
-
-
+-->
+<div id="os">
+    OS:
+</div>
+<div id="model">
+    Model:
+</div>
+<div id="par_table">
+    Parameters table:
+</div>
 <br>
-<label for="number">Number of components:</label>
-<input type="number" id="number" min="2" max="10" value="2">
+<div id="showdatainput">
+</div>
 <br>
+<div id="wrapper">
+    Number of components:
+</div>
 <br>
-<button id="create">Create</button>
-<div id="container"></div>
+<div id="div_download">
+</div>
 
 <script>
 // Get the elements from the document
-var number          = document.getElementById("number");
-var create          = document.getElementById("create");
-var container       = document.getElementById("container");
-var par_table       = document.getElementById("par_table");
-//var set_par_table   = document.getElementById("set_par_table");
-//var par_table_value = 0;
-function msgprint(){  
-            
-            var par_table_value = par_table.value
-            alert(par_table.value);
-            return par_table_value
-         }  ;
-//function manolo()
-//set_par_table.addEventListener("click", function manolo(par_table_value) {
-//})
+//var os          = document.getElementById("number");
+//var create          = document.getElementById("create");
+//var container       = document.getElementById("container");
+//var par_table       = document.getElementById("par_table");
 
-
-// Add a click event listener to the create button
-create.addEventListener("click", function() {
+/*
+createbutton.onclick("click", () => {
   // Clear the container element
   container.innerHTML = "";
   // Get the number of selection boxes to create
@@ -253,31 +252,200 @@ create.addEventListener("click", function() {
         "(SIO)"
     ]
     } else
-    var options = ["Empty"]
-  var n = 10;
-  // Loop through the number and create the selection boxes
-  //for (var i = 0; i < comp; i++){
+    var options = ["Empty"] 
+});
+*/
+//#region Get the problem name element.
+//#endregion
 
-  //}
-  for (var j = 0; j < n; j++) {
-    // Create a new select element
-    var select = document.createElement("select");
-    // Loop through the options and create the option elements
-    for (var k = 0; k < options.length; k++) {
-      // Create a new option element
-      var option = document.createElement("option");
-      // Set the value and text of the option element
-      option.value = options[k].toLowerCase();
-      option.textContent = options[k];
-      // Append the option element to the select element
-      select.appendChild(option);
-    }
-    // Append the select element to the container element
-    container.appendChild(select);
-    
+//#region Get the os element for the os selection box.
+var os = document.getElementById("os");
+var os_box = document.createElement("select");
+os_box.className = "os_box";
+var os_option = document.createElement("option");
+    os_option.value = "linux_ubuntu";
+    os_option.text = "Linux_Ubuntu";
+    os_box.appendChild(os_option);
+var os_option = document.createElement("option");
+    os_option.value = "windows";
+    os_option.text = "Windows";
+
+os_box.appendChild(os_option);
+os.appendChild(os_box);
+
+//#endregion
+
+//#region Get the model element for the model selection box.
+var model = document.getElementById("model");
+var model_box = document.createElement("select");
+model_box.className = "model_box";
+var model_option = document.createElement("option");
+    model_option.value = "0";
+    model_option.text = "UNIFAC";
+    model_box.appendChild(model_option);
+var model_option = document.createElement("option");
+    model_option.value = "1";
+    model_option.text = "A-UNIFAC";
+
+model_box.appendChild(model_option);
+model.appendChild(model_box);
+//#endregion
+
+//#region Set a button to print the data input
+var showdatainput = document.getElementById("showdatainput");
+var showdatainputButton = document.createElement("input");
+showdatainputButton.id = "showdatainput";
+showdatainputButton.type = "button";
+showdatainputButton.value = "Save";
+showdatainput.appendChild(showdatainputButton);
+showdatainputButton.onclick = ()=> {
+    var os_sel = os_box.options[os_box.selectedIndex].text
+    var model_sel = model_box.options[model_box.selectedIndex].text
+    alert("Saved problem data and configuration:\n\n"+
+    "#-PROBLEM-NAME:".padEnd(23,"_")        + "os_sel"  + "\n" +
+    "#-OPERATING-SYSTEM:".padEnd(24,"_")    + os_sel    + "\n" +
+    "#-MODEL:".padEnd(25,"_")               + model_sel + "\n" +
+    "#-PARAMETERS-TABLE:".padEnd(24,"_")    + model_sel + "\n"
+    );    
+};
+
+//#endregion
+
+// Get the wrapper element for the input boxes
+var wrapper = document.getElementById("wrapper");
+var div_download = document.getElementById("div_download");
+
+// Create an input box for n_components
+var nInput = document.createElement("input");
+nInput.id = "nInput";
+nInput.type = "number";
+nInput.min = "2";
+nInput.max = "10";
+nInput.value = "2";
+wrapper.appendChild(nInput);
+
+// Create a set button
+var setButton = document.createElement("input");
+setButton.id = "setButton";
+setButton.type = "button";
+setButton.value = "Create table";
+wrapper.appendChild(setButton);
+
+// Add an onclick event listener to setButton
+setButton.onclick = () => {
+  // Get the selected value of n_maxgroups and n_components
+  var n_components = nInput.value;
+  var n_maxgroups = 10; // Number of functional groups
+  
+  // Remove any existing selection boxes or lines for each n_components line
+  var boxes = document.getElementsByClassName("box");
+  while (boxes.length > 0) {
+    boxes[0].remove();
+  }
+  var line = document.getElementsByClassName("line");
+  while (line.length > 0) {
+    line[0].remove();
   }
   
-});
+  // Create n_maxgroups selection boxes for each n_components line
+  for (var i = 0; i < n_components; i++) {
+    // Create a container element for each n_components line
+    var line = document.createElement("div");
+    line.className = "line";
+    wrapper.appendChild(line);
+    
+    // Create a label for each Component line
+    var label = document.createElement("span");
+    label.textContent = "Component " + (i + 1) + ": ";
+    line.appendChild(label);
+    
+    // Create n_maxgroups selection boxes for each line
+    for (var j = 0; j < n_maxgroups; j++) {
+      // Create a selection box
+      var box = document.createElement("select");
+      box.className = "box";
+      
+      // Add some dummy options for each box
+      for (var k = 0; k < 5; k++) {
+        var option = document.createElement("option");
+        option.value = k;
+        option.text = "Option " + (k + 1);
+        box.appendChild(option);
+      }
+      
+      // Append the box to the line
+      line.appendChild(box);
+    }
+        // Create a container element for each line
+    var line = document.createElement("div");
+    line.className = "line";
+    wrapper.appendChild(line);
+    
+    // Create a label for each Component line
+    var label = document.createElement("span");
+    label.textContent = "_".repeat(12);
+    line.appendChild(label);
+    for (var j = 0; j < n_maxgroups; j++) {
+      // Create a selection box
+      var ngroup_Input = document.createElement("input");
+      ngroup_Input.id = "ngroup_Input";
+      ngroup_Input.className = "input"
+      ngroup_Input.type = "number";
+      ngroup_Input.min = "0";
+      ngroup_Input.max = "1000";
+      ngroup_Input.value = "0";
+      
+      
+          
+      // Append the box to the line
+      line.appendChild(ngroup_Input);
+    }
+  }
+};
+// Create a download button
+var downloadButton = document.createElement("input");
+downloadButton.id = "downloadButton";
+downloadButton.type = "button";
+downloadButton.value = "Download";
+div_download.appendChild(downloadButton);
+// Add an onclick event listener to downloadButton
+downloadButton.onclick = () => {
+  // Get all the input and selection values
+  var values = [];
+  values.push("Number of components: " + nInput.value);
+  
+  var lines = document.getElementsByClassName("line");
+  for (var i = 0; i < lines.length; i++) {
+    var lineValues = [];
+    var boxes = lines[i].getElementsByClassName("box");
+    var inputs = lines[i].getElementsByClassName("input");
+    for (var j = 0; j < boxes.length; j++) {
+      lineValues.push(boxes[j].value);
+    }
+    for (var j = 0; j < inputs.length; j++) {
+      lineValues.push(inputs[j].value);
+    }
+    if (i % 2 == 0)
+    values.push("Component " + ((i/2)+1) + ":, " + lineValues.join(", "));
+    else
+    values.push("Component " + ((i+1)/2) + ":, " + lineValues.join(", "));
+  }
+  values.push("0,0") //Print end of file
+  /*
+  */
+  // Create a text file from the values
+  var textFileAsBlob = new Blob([values.join("\n")], {type: 'text/plain'});
+  
+  // Create a link element to download the file
+  var downloadLink = document.createElement("a");
+  downloadLink.download = "values.txt";
+  
+  // Use createObjectURL to create a URL for the file
+  downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+  
+  // Click the link to download the file
+  downloadLink.click();
+};
 </script>
 
 
