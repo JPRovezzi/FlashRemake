@@ -9,13 +9,13 @@
 <p>Problem name:</p>
 <input type="text"  id="problem_name" name="name" value="llecalas2">
 <p>Data input:</p>
-<div id="os">
+<div id="os_">
 
 </div>
-<div id="model">
+<div id="model_">
 
 </div>
-<div id="partable">
+<div id="partable_">
 
 </div>
 <br>
@@ -23,25 +23,30 @@
     <!-- Create three rows -->
     <tr>
       <!-- Create three cells in each row -->
-      <td>Cell 1</td>
-      <td>Cell 2</td>
-      <td>Cell 3</td>
+      <td>OS:</td>
+      <td id="os"></td>
     </tr>
     <tr>
-      <td>Cell 4</td>
-      <td>Cell 5</td>
-      <td>Cell 6</td>
+      <td>MODEL:</td>
+      <td id="model"></td>
     </tr>
     <tr>
-      <td>Cell 7</td>
-      <td>Cell 8</td>
-      <td>Cell 9</td>
+      <td>PARAMETER TABLE:</td>
+      <td id="partable"></td>
+    </tr>
+    <tr>
+        <td><br></td>
+        <td><br></td>
+    </tr>
+    <tr>
+        <td id="temperature"></td>
+        <td></td>
     </tr>
   </table>
 <br>
-<div id="temperature">
+<div id="temperature_">
 </div>
-<div id="pressure">
+<div id="pressure_">
 
 </div>
 <br>
@@ -63,7 +68,7 @@
 </div>
 
 <script>
-var boxsepn = 8 //Separation of the selection boxes
+var boxsepn = 0 //Separation of the selection boxes
 var boxsepv = "　" //Separation character of selection boxes
 //#region Get the problem name element.
 var problem_name = document.getElementById("problem_name");
@@ -82,7 +87,7 @@ var os_option = document.createElement("option");
     os_option.text = "Windows";
 
 os_box.appendChild(os_option);
-os.appendChild(document.createTextNode("OS:".padEnd(boxsepn+4,boxsepv)));
+//os.appendChild(document.createTextNode("OS:".padEnd(boxsepn,boxsepv)));
 os.appendChild(os_box);
 
 //#endregion
@@ -100,7 +105,7 @@ var model_option = document.createElement("option");
     model_option.text = "A-UNIFAC";
 
 model_box.appendChild(model_option);
-model.appendChild(document.createTextNode("MODEL:".padEnd(boxsepn+5,boxsepv)));
+//model.appendChild(document.createTextNode("MODEL:".padEnd(boxsepn+5,boxsepv)));
 model.appendChild(model_box);
 //#endregion
 
@@ -121,7 +126,7 @@ var partable_option = document.createElement("option");
     partable_option.text = "Infinity dil.";
 
 partable_box.appendChild(partable_option);
-partable.appendChild(document.createTextNode("PARAMETER TABLE:".padEnd(17,boxsepv)));
+//partable.appendChild(document.createTextNode("PARAMETER TABLE:".padEnd(17,boxsepv)));
 partable.appendChild(partable_box);
 //#endregion
 
