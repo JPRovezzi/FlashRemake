@@ -90,12 +90,13 @@
 </div>
 
 <script>
+//#region Borrar    
 // Get the elements from the document
 //var os          = document.getElementById("number");
 //var create          = document.getElementById("create");
 //var container       = document.getElementById("container");
 //var par_table       = document.getElementById("par_table");
-
+//#endregion
 /*
 createbutton.onclick("click", () => {
   // Clear the container element
@@ -255,6 +256,8 @@ createbutton.onclick("click", () => {
     var options = ["Empty"] 
 });
 */
+
+
 //#region Get the problem name element.
 //#endregion
 
@@ -311,7 +314,7 @@ showdatainputButton.onclick = ()=> {
 
 //#endregion
 
-// Get the wrapper element for the input boxes
+//#region Get the wrapper element for the input boxes
 var wrapper = document.getElementById("wrapper");
 var div_download = document.getElementById("div_download");
 
@@ -402,7 +405,9 @@ setButton.onclick = () => {
     }
   }
 };
-// Create a download button
+//#endregion
+
+//#region Create a download button
 var downloadButton = document.createElement("input");
 downloadButton.id = "downloadButton";
 downloadButton.type = "button";
@@ -446,6 +451,7 @@ downloadButton.onclick = () => {
   // Click the link to download the file
   downloadLink.click();
 };
+//#endregion
 </script>
 
 
