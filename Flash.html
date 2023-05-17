@@ -98,6 +98,31 @@ partable_box.appendChild(partable_option);
 partable.appendChild(partable_box);
 //#endregion
 
+//#region Calculation config
+/*
+    '!   icalc:  0-' **** FLASH CALCULATION ****'
+    '!           1-' **** BINODAL CURVE CALCULATION ****'
+    '!           2-' **** CALCULATION OF UNIQUAC PARAMETERS FROM UNIFAC **** '
+    '!   model:  0-' MODEL USED FOR LIQUID PHASE NON-IDEALITY: UNIFAC'
+    '!           1-' MODEL USED FOR LIQUID PHASE NON-IDEALITY: UNIQUAC'
+    '!   ipr:    1-' ** COMPARISON OF ACTIVITIES CALCULATED BY UNIFAC AND 
+                    UNIQUAC, RESPECTIVELY **'
+    '!   iout:   1-'open 'lleasoccuzada.OUT''
+    '!   novap:  0-'VAPOR PHASE INCLUDED IN FLASH-CALCULATIONS'
+    '!   ig:     0-'write compositions'
+    '!           1-'write compositions and activities'
+    '!   ipareq: 1-'liquid-liquid parameters table (UNIFAC)'
+    '!           2-'liquid-vapor parameters table (UNIFAC)'
+    '!           3-'infinite dilution parameters table (UNIFAC)'
+    '!           4-'GC-EOS parameters'
+*/
+var icalc = 0
+var ipr   = 0
+var iout  = 1
+var novap = 0
+var ig    = 1
+//#endregion
+
 //#region Create a button to print the data input
 var showdatainput = document.getElementById("showdatainput");
 var showdatainputButton = document.createElement("input");
@@ -110,16 +135,21 @@ showdatainputButton.onclick = ()=> {
     var model_sel = model_box.options[model_box.selectedIndex].text
     var partable_sel = partable_box.options[partable_box.selectedIndex].text
     alert("Saved problem data and configuration:\n\n"+
-    "#-PROBLEM-NAME:".padEnd(23,"_")        + problem_name.value  + "\n" +
+    "#-PROBLEM-NAME:".padEnd(23,"_")        + problem_name.value    + "\n"    +
     "#-OPERATING-SYSTEM:".padEnd(24,"_")    + os_sel    + "\n" +
     "#-MODEL:".padEnd(25,"_")               + model_sel + "\n" +
-    "#-PARAMETERS-TABLE:".padEnd(24,"_")    + partable_sel + "\n"
+    "#-PARAMETERS-TABLE:".padEnd(24,"_")    + partable_sel  + "\n\n"    +
+    "-> FLASH-CALCULATION;".padEnd(0,"_")   + "\n" +
+    `-> COMPARISON OF ACTIVITIES CALCULATED BY ${model_sel};`  + "\n"      +
+    "-> OPEN 'lleasoccuzada.OUT';"  + "\n"  +
+    "-> VAPOR PHASE INCLUDED IN FLASH-CALCULATIONS;"   + "\n"  +
+    "-> WRITE COMPOSITIONS AND ACTIVITIES."
     );    
 };
 
 //#endregion
 
-//#region Set the Group list from the par_table information.
+//#region Set the Group list from the partable information.
 
 var grouplist1 = ["None",
     "(CH3)",
@@ -292,85 +322,88 @@ wrapper.appendChild(setButton);
 
 // Add an onclick event listener to setButton
 setButton.onclick = () => {
-  var n_components = nInput.value; // Number of components
-  var n_maxgroups = 10; // Max number of functional groups per component
-  var partable_sel = partable_box.options[partable_box.selectedIndex].value
-  var grouplist = ["ERROR"]
-  if (partable_sel == 1){
-    grouplist = grouplist1
+    var n_components = nInput.value; // Number of components
+    var n_maxgroups = 10; // Max number of functional groups per component
+    var partable_sel = partable_box.options[partable_box.selectedIndex].value
+    var grouplist = ["ERROR"]
+    if (partable_sel == 1){
+        grouplist = grouplist1
     } 
     else if(partable_sel == 2){
         grouplist = grouplist2
     } 
     else grouplist = grouplist3
-  
-  // Remove any existing selection boxes or lines for each n_components line
-  var boxes = document.getElementsByClassName("box");
-  while (boxes.length > 0) {
-    boxes[0].remove();
-  }
-  var line = document.getElementsByClassName("line");
-  while (line.length > 0) {
-    line[0].remove();
-  }
-  
-  // Create n_maxgroups selection boxes for each n_components line
-  for (var i = 0; i < n_components; i++) {
-    // Create a container element for each n_components line
-    var line = document.createElement("div");
-    line.className = "line";
-    wrapper.appendChild(line);
-    
-    // Create a label for each Component line
-    var label = document.createElement("span");
-    label.textContent = "Component " + (i + 1) + ":"
-    +".".repeat(22)+"Group: ";
-    line.appendChild(label);
-    
-    // Create n_maxgroups selection boxes for each line
-    for (var j = 0; j < n_maxgroups; j++) {
-      // Create a selection box
-      var box = document.createElement("select");
-      box.className = "box";
-      
-      // Add the grouplist options for each box
-      
-      for (var k = 0; k < grouplist.length; k++) { 
-        var option = document.createElement("option");
-        option.value = k;
-        option.text = grouplist[k];
-        //option.text = "1";
-        box.appendChild(option);
-      }
-      
-      // Append the box to the line
-      line.appendChild(box);
+    // Remove any existing selection boxes or lines for each n_components line
+    var boxes = document.getElementsByClassName("box");
+    while (boxes.length > 0) {
+        boxes[0].remove();
     }
+    var line = document.getElementsByClassName("line");
+    while (line.length > 0) {
+        line[0].remove();
+    }
+  
+    // Create n_maxgroups selection boxes for each n_components line
+    for (var i = 0; i < n_components; i++) {
+        // Create a container element for each n_components line
+        var line = document.createElement("div");
+        line.className = "line";
+        wrapper.appendChild(line);
+        
+        // Create a label for each Component line
+        var label = document.createElement("span");
+        label.textContent = "Component " + (i + 1) + ":"
+        +".".repeat(18)+"Group: ";
+        line.appendChild(label);
+    
+        // Create n_maxgroups selection boxes for each line
+        for (var j = 0; j < n_maxgroups; j++) {
+            // Create a selection box
+            var box = document.createElement("select");
+            box.className = "box";
+            // Add the grouplist options for each box
+            for (var k = 0; k < grouplist.length; k++) { 
+                var option = document.createElement("option");
+                option.value = k;
+                option.text = grouplist[k];
+                //option.text = "1";
+                box.appendChild(option);
+            }
+      
+            // Append the box to the line
+            line.appendChild(box);
+        }
         // Create a container element for each line
-    var line = document.createElement("div");
-    line.className = "line";
-    wrapper.appendChild(line);
+        var line = document.createElement("div");
+        line.className = "line";
+        wrapper.appendChild(line);
     
-    // Create a label for each Component line
-    var label = document.createElement("span");
-    label.textContent = ".".repeat(28) + "Number of groups: ";
-    line.appendChild(label);
-    for (var j = 0; j < n_maxgroups; j++) {
-      // Create a selection box
-      var ngroup_Input = document.createElement("input");
-      ngroup_Input.id = "ngroup_Input";
-      ngroup_Input.className = "input"
-      ngroup_Input.type = "number";
-      ngroup_Input.min = "0";
-      ngroup_Input.max = "1000";
-      ngroup_Input.value = "0";
-      
-      
+        // Create a label for each Component line
+        var label = document.createElement("span");
+        label.textContent = ".".repeat(22) + "Number of groups: ";
+        line.appendChild(label);
+        for (var j = 0; j < n_maxgroups; j++) {
+            // Create a selection box
+            var ngroup_Input = document.createElement("input");
+            ngroup_Input.id = "ngroup_Input";
+            ngroup_Input.className = "input"
+            ngroup_Input.type = "number";
+            ngroup_Input.min = "0";
+            ngroup_Input.max = "100000"; //Also adjust Chromium box size
+            ngroup_Input.value = "0";
+            ngroup_Input.setAttribute("size", 5); //Adjust Firefox box size 
+            
           
-      // Append the box to the line
-      line.appendChild(ngroup_Input);
+            // Append the box to the line
+            line.appendChild(ngroup_Input);
+        }
     }
-  }
+    var option_size = document.querySelectorAll("option"); //Adjust box size
+    option_size.forEach(function(option) {
+        if (option.textContent.length > 13) {
+            option.textContent = option.textContent.substring(0, 13) + "...";
+        }
+    });
 };
 //#endregion
 
@@ -383,11 +416,17 @@ div_download.appendChild(downloadButton);
 // Add an onclick event listener to downloadButton
 downloadButton.onclick = () => {
     var values = [];
-    values.push('"'+problem_name.value+'"') //Print name of file
+    
+    var model_sel = model_box.options[model_box.selectedIndex].value
+    var partable_sel = partable_box.options[partable_box.selectedIndex].value
+
+    values.push(`"${problem_name.value}"`) //Print name of file
+    values.push(
+        `${icalc},${model_sel},${ipr},${iout},${novap},${ig},${partable_sel}`)
     //#region Get all the input and selection values
     
     
-    values.push("Number of components: " + nInput.value);
+    values.push(`${nInput.value}`);
     var lines = document.getElementsByClassName("line");
     for (var i = 0; i < (lines.length-1); (i++)) {
         var lineValues = [];
@@ -401,7 +440,8 @@ downloadButton.onclick = () => {
             //lineValues.push(inputs[j].value);
             //}
         if (i % 2 == 0)
-        values.push("Component " + ((i/2)+1) + ":, " + lineValues.join(", "));
+        values.push(lineValues.join(","));
+        //values.push("Component " + ((i/2)+1) + ":, " + lineValues.join(", "));
         //else
         //values.push("Component " + ((i+1)/2) + ":, " + lineValues.join(", "));
     }
