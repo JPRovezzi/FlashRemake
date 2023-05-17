@@ -382,41 +382,45 @@ downloadButton.value = "Download";
 div_download.appendChild(downloadButton);
 // Add an onclick event listener to downloadButton
 downloadButton.onclick = () => {
-  // Get all the input and selection values
-  var values = [];
-  values.push("Number of components: " + nInput.value);
-  
-  var lines = document.getElementsByClassName("line");
-  for (var i = 0; i < lines.length; i++) {
-    var lineValues = [];
-    var boxes = lines[i].getElementsByClassName("box");
-    var inputs = lines[i].getElementsByClassName("input");
-    for (var j = 0; j < boxes.length; j++) {
-      lineValues.push(boxes[j].value);
+    var values = [];
+    values.push('"'+problem_name.value+'"') //Print name of file
+    //#region Get all the input and selection values
+    
+    
+    values.push("Number of components: " + nInput.value);
+    var lines = document.getElementsByClassName("line");
+    for (var i = 0; i < (lines.length-1); (i++)) {
+        var lineValues = [];
+        var boxes = lines[i].getElementsByClassName("box");
+        var inputs = lines[i+1].getElementsByClassName("input");
+        for (var j = 0; j < boxes.length; j++) {
+            lineValues.push(boxes[j].value);
+            lineValues.push(inputs[j].value);
+        }
+        //for (var j = 0; j < inputs.length; j++) {
+            //lineValues.push(inputs[j].value);
+            //}
+        if (i % 2 == 0)
+        values.push("Component " + ((i/2)+1) + ":, " + lineValues.join(", "));
+        //else
+        //values.push("Component " + ((i+1)/2) + ":, " + lineValues.join(", "));
     }
-    for (var j = 0; j < inputs.length; j++) {
-      lineValues.push(inputs[j].value);
-    }
-    if (i % 2 == 0)
-    values.push("Component " + ((i/2)+1) + ":, " + lineValues.join(", "));
-    else
-    values.push("Component " + ((i+1)/2) + ":, " + lineValues.join(", "));
-  }
-  values.push("0,0") //Print end of file
-  /*
-  */
-  // Create a text file from the values
-  var textFileAsBlob = new Blob([values.join("\n")], {type: 'text/plain'});
+  //#endregion
+
+    values.push("0,0") //Print end of file
+
+    // Create a text file from the values
+    var textFileAsBlob = new Blob([values.join("\n")], {type: 'text/plain'});
   
-  // Create a link element to download the file
-  var downloadLink = document.createElement("a");
-  downloadLink.download = "values.txt";
+    // Create a link element to download the file
+    var downloadLink = document.createElement("a");
+    downloadLink.download = problem_name.value+".dat";
   
-  // Use createObjectURL to create a URL for the file
-  downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    // Use createObjectURL to create a URL for the file
+    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
   
-  // Click the link to download the file
-  downloadLink.click();
+    // Click the link to download the file
+    downloadLink.click();
 };
 //#endregion
 </script>
