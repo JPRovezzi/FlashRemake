@@ -10,13 +10,21 @@
 <input type="text"  id="problem_name" name="name" value="llecalas2">
 <p>Data input:</p>
 <div id="os">
-    OS:
+
 </div>
 <div id="model">
-    Model:
+
 </div>
 <div id="partable">
-    Parameters table:
+
+</div>
+<br>
+<br>
+<div id="temperature">
+
+</div>
+<div id="pressure">
+
 </div>
 <br>
 <div id="showdatainput">
@@ -37,15 +45,13 @@
 </div>
 
 <script>
-//#region Borrar    
-
-//#endregion
-
+var boxsepn = 8 //Separation of the selection boxes
+var boxsepv = "　" //Separation character of selection boxes
 //#region Get the problem name element.
 var problem_name = document.getElementById("problem_name");
 //#endregion
 
-//#region Get the os element for the os selection box.
+//#region Get the os element selection box.
 var os = document.getElementById("os");
 var os_box = document.createElement("select");
 os_box.className = "os_box";
@@ -58,11 +64,12 @@ var os_option = document.createElement("option");
     os_option.text = "Windows";
 
 os_box.appendChild(os_option);
+os.appendChild(document.createTextNode("OS:".padEnd(boxsepn+4,boxsepv)));
 os.appendChild(os_box);
 
 //#endregion
 
-//#region Get the model element for the model selection box.
+//#region Get the model element selection box.
 var model = document.getElementById("model");
 var model_box = document.createElement("select");
 model_box.className = "model_box";
@@ -75,10 +82,11 @@ var model_option = document.createElement("option");
     model_option.text = "A-UNIFAC";
 
 model_box.appendChild(model_option);
+model.appendChild(document.createTextNode("MODEL:".padEnd(boxsepn+5,boxsepv)));
 model.appendChild(model_box);
 //#endregion
 
-//#region Get the partable element for the partable selection box
+//#region Get the "partable" element selection box
 var partable = document.getElementById("partable");
 var partable_box = document.createElement("select");
 partable_box.className = "partable_box";
@@ -95,7 +103,37 @@ var partable_option = document.createElement("option");
     partable_option.text = "Infinity dil.";
 
 partable_box.appendChild(partable_option);
+partable.appendChild(document.createTextNode("PARAMETER TABLE:".padEnd(17,boxsepv)));
 partable.appendChild(partable_box);
+//#endregion
+
+//#region Get the temperature element input box 
+var temperature = document.getElementById("temperature");
+var temperature_box = document.createElement("input");
+temperature_box.className = "temperature_box";
+temperature_box.id = "temperature_box";
+temperature_box.type = "number";
+temperature_box.min = "1";
+temperature_box.max = "1000000";
+temperature_box.value = "273";
+temperature.appendChild(document.createTextNode(
+    "T (K):".padEnd(boxsepn+6,boxsepv)));
+temperature.appendChild(temperature_box);
+
+//#endregion
+
+//#region Get the pressure element input box 
+var pressure = document.getElementById("pressure");
+var pressure_box = document.createElement("input");
+pressure_box.className = "pressure_box";
+pressure_box.id = "pressure_box";
+pressure_box.type = "number";
+pressure_box.min = "1";
+pressure_box.max = "1000000";
+pressure_box.value = "1";
+pressure.appendChild(document.createTextNode(
+    "P (atm):".padEnd(boxsepn+7,boxsepv)));
+pressure.appendChild(pressure_box);
 //#endregion
 
 //#region Calculation config
@@ -130,19 +168,23 @@ showdatainputButton.id = "showdatainput";
 showdatainputButton.type = "button";
 showdatainputButton.value = "Save";
 showdatainput.appendChild(showdatainputButton);
+
 showdatainputButton.onclick = ()=> {
     var os_sel = os_box.options[os_box.selectedIndex].text
     var model_sel = model_box.options[model_box.selectedIndex].text
     var partable_sel = partable_box.options[partable_box.selectedIndex].text
+    
     alert("Saved problem data and configuration:\n\n"+
-    "#-PROBLEM-NAME:".padEnd(23,"_")        + problem_name.value    + "\n"    +
-    "#-OPERATING-SYSTEM:".padEnd(24,"_")    + os_sel    + "\n" +
-    "#-MODEL:".padEnd(25,"_")               + model_sel + "\n" +
-    "#-PARAMETERS-TABLE:".padEnd(24,"_")    + partable_sel  + "\n\n"    +
-    "-> FLASH-CALCULATION;".padEnd(0,"_")   + "\n" +
-    `-> COMPARISON OF ACTIVITIES CALCULATED BY ${model_sel};`  + "\n"      +
+    "#-PROBLEM-NAME:".padEnd(23,"_")        + problem_name.value    + "\n"  +
+    "#-OPERATING-SYSTEM:".padEnd(24,"_")    + os_sel    + "\n"  +
+    "#-MODEL:".padEnd(25,"_")               + model_sel + "\n"  +
+    "#-PARAMETERS-TABLE:".padEnd(24,"_")    + partable_sel  + "\n\n"        +
+    "#-TEMPERATURE_(K):".padEnd(24,"_")     + temperature_box.value + "\n"  +
+    "#-PRESSURE_(ATM):".padEnd(25,"_")      + pressure_box.value    + "\n\n"    +
+    "-> FLASH-CALCULATION;".padEnd(0,"_")   + "\n"  +
+    `-> COMPARISON OF ACTIVITIES CALCULATED BY ${model_sel};`   + "\n"      +
     "-> OPEN 'lleasoccuzada.OUT';"  + "\n"  +
-    "-> VAPOR PHASE INCLUDED IN FLASH-CALCULATIONS;"   + "\n"  +
+    "-> VAPOR PHASE INCLUDED IN FLASH-CALCULATIONS;"   + "\n"   +
     "-> WRITE COMPOSITIONS AND ACTIVITIES."
     );    
 };
