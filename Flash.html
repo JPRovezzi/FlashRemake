@@ -9,73 +9,13 @@
 <p>Problem name:</p>
 <input type="text"  id="problem_name" name="name" value="llecalas2">
 <p>Data input:</p>
-<!--
-<code>
-    <label for="OS">
-        OS:      
-    </label>
-    <select name="OS" id="OS"> 
-        <option value="Linux_Ubuntu">
-            Linux (Ubuntu)
-        </option> 
-        <option value="Windows">
-            Windows
-        </option>
-    </select> 
-
-    <br> 
-
-    <label for="Model">
-        Model:
-    </label> 
-    <select name="Model" id="model"> 
-        <option value="UNIFAC">
-            UNIFAC
-        </option> 
-        <option value="A-UNIFAC">
-            A-UNIFAC
-        </option> 
-    </select>
-    
-    <br> 
-
-    <label for="Parameters_table">
-        Parameters table:
-    </label> 
-    <select name="Parameters_table" id="par_table"> 
-        <option value="1">
-            Liquid-Liquid
-        </option> 
-        <option value="2">
-            Vapor-Liquid
-        </option> 
-        <option value="3">
-            Infinity dil.
-        </option> 
-    </select>
-    <br>
-    <button id="set_par_table" onclick = "msgprint()">Set</button>
-
-   
-    <form>
-        <input type = "button" onclick = ""
-    </form>
- 
-    
-
-    <br>
-    Number of components:
-    <input type="text"  id="name" name="name" value="0">
-    
-</code>
--->
 <div id="os">
     OS:
 </div>
 <div id="model">
     Model:
 </div>
-<div id="par_table">
+<div id="partable">
     Parameters table:
 </div>
 <br>
@@ -86,27 +26,102 @@
     Number of components:
 </div>
 <br>
+<br>
+<br>
+<p>Comments:</p> 
+<textarea id="comment" name="comment" rows="4" cols="50">
+</textarea>
+<br>
+<br>
 <div id="div_download">
 </div>
 
 <script>
 //#region Borrar    
-// Get the elements from the document
-//var os          = document.getElementById("number");
-//var create          = document.getElementById("create");
-//var container       = document.getElementById("container");
-//var par_table       = document.getElementById("par_table");
+
 //#endregion
-/*
-createbutton.onclick("click", () => {
-  // Clear the container element
-  container.innerHTML = "";
-  // Get the number of selection boxes to create
-  //var n = parseInt(number.value);
-  var par_table_value = parseInt(par_table.value);
-  // Define some sample options for the selection boxes
-  if (par_table_value == 1){
-    var options = ["None",
+
+//#region Get the problem name element.
+var problem_name = document.getElementById("problem_name");
+//#endregion
+
+//#region Get the os element for the os selection box.
+var os = document.getElementById("os");
+var os_box = document.createElement("select");
+os_box.className = "os_box";
+var os_option = document.createElement("option");
+    os_option.value = "linux_ubuntu";
+    os_option.text = "Linux_Ubuntu";
+    os_box.appendChild(os_option);
+var os_option = document.createElement("option");
+    os_option.value = "windows";
+    os_option.text = "Windows";
+
+os_box.appendChild(os_option);
+os.appendChild(os_box);
+
+//#endregion
+
+//#region Get the model element for the model selection box.
+var model = document.getElementById("model");
+var model_box = document.createElement("select");
+model_box.className = "model_box";
+var model_option = document.createElement("option");
+    model_option.value = "0";
+    model_option.text = "UNIFAC";
+    model_box.appendChild(model_option);
+var model_option = document.createElement("option");
+    model_option.value = "1";
+    model_option.text = "A-UNIFAC";
+
+model_box.appendChild(model_option);
+model.appendChild(model_box);
+//#endregion
+
+//#region Get the partable element for the partable selection box
+var partable = document.getElementById("partable");
+var partable_box = document.createElement("select");
+partable_box.className = "partable_box";
+var partable_option = document.createElement("option");
+    partable_option.value = "1";
+    partable_option.text = "Liquid-Liquid";
+    partable_box.appendChild(partable_option);
+var partable_option = document.createElement("option");
+    partable_option.value = "2";
+    partable_option.text = "Vapor-Liquid";
+    partable_box.appendChild(partable_option);
+var partable_option = document.createElement("option");
+    partable_option.value = "3";
+    partable_option.text = "Infinity dil.";
+
+partable_box.appendChild(partable_option);
+partable.appendChild(partable_box);
+//#endregion
+
+//#region Create a button to print the data input
+var showdatainput = document.getElementById("showdatainput");
+var showdatainputButton = document.createElement("input");
+showdatainputButton.id = "showdatainput";
+showdatainputButton.type = "button";
+showdatainputButton.value = "Save";
+showdatainput.appendChild(showdatainputButton);
+showdatainputButton.onclick = ()=> {
+    var os_sel = os_box.options[os_box.selectedIndex].text
+    var model_sel = model_box.options[model_box.selectedIndex].text
+    var partable_sel = partable_box.options[partable_box.selectedIndex].text
+    alert("Saved problem data and configuration:\n\n"+
+    "#-PROBLEM-NAME:".padEnd(23,"_")        + problem_name.value  + "\n" +
+    "#-OPERATING-SYSTEM:".padEnd(24,"_")    + os_sel    + "\n" +
+    "#-MODEL:".padEnd(25,"_")               + model_sel + "\n" +
+    "#-PARAMETERS-TABLE:".padEnd(24,"_")    + partable_sel + "\n"
+    );    
+};
+
+//#endregion
+
+//#region Set the Group list from the par_table information.
+
+var grouplist1 = ["None",
     "(CH3)",
     "(CH2)",
     "(CH)",
@@ -165,8 +180,7 @@ createbutton.onclick("click", () => {
     "(TMS)",
     "(ME2SO)"
     ];
-    } else if(par_table_value == 2){
-        var options = ["None",
+    var grouplist2 = ["None",
         "(CH3)",
         "(CH2)",
         "(CH)",
@@ -252,66 +266,8 @@ createbutton.onclick("click", () => {
         "(SIHO)",
         "(SIO)"
     ]
-    } else
-    var options = ["Empty"] 
-});
-*/
-
-
-//#region Get the problem name element.
-//#endregion
-
-//#region Get the os element for the os selection box.
-var os = document.getElementById("os");
-var os_box = document.createElement("select");
-os_box.className = "os_box";
-var os_option = document.createElement("option");
-    os_option.value = "linux_ubuntu";
-    os_option.text = "Linux_Ubuntu";
-    os_box.appendChild(os_option);
-var os_option = document.createElement("option");
-    os_option.value = "windows";
-    os_option.text = "Windows";
-
-os_box.appendChild(os_option);
-os.appendChild(os_box);
-
-//#endregion
-
-//#region Get the model element for the model selection box.
-var model = document.getElementById("model");
-var model_box = document.createElement("select");
-model_box.className = "model_box";
-var model_option = document.createElement("option");
-    model_option.value = "0";
-    model_option.text = "UNIFAC";
-    model_box.appendChild(model_option);
-var model_option = document.createElement("option");
-    model_option.value = "1";
-    model_option.text = "A-UNIFAC";
-
-model_box.appendChild(model_option);
-model.appendChild(model_box);
-//#endregion
-
-//#region Set a button to print the data input
-var showdatainput = document.getElementById("showdatainput");
-var showdatainputButton = document.createElement("input");
-showdatainputButton.id = "showdatainput";
-showdatainputButton.type = "button";
-showdatainputButton.value = "Save";
-showdatainput.appendChild(showdatainputButton);
-showdatainputButton.onclick = ()=> {
-    var os_sel = os_box.options[os_box.selectedIndex].text
-    var model_sel = model_box.options[model_box.selectedIndex].text
-    alert("Saved problem data and configuration:\n\n"+
-    "#-PROBLEM-NAME:".padEnd(23,"_")        + "os_sel"  + "\n" +
-    "#-OPERATING-SYSTEM:".padEnd(24,"_")    + os_sel    + "\n" +
-    "#-MODEL:".padEnd(25,"_")               + model_sel + "\n" +
-    "#-PARAMETERS-TABLE:".padEnd(24,"_")    + model_sel + "\n"
-    );    
-};
-
+    var grouplist3 = ["Empty"] 
+;
 //#endregion
 
 //#region Get the wrapper element for the input boxes
@@ -336,9 +292,17 @@ wrapper.appendChild(setButton);
 
 // Add an onclick event listener to setButton
 setButton.onclick = () => {
-  // Get the selected value of n_maxgroups and n_components
-  var n_components = nInput.value;
-  var n_maxgroups = 10; // Number of functional groups
+  var n_components = nInput.value; // Number of components
+  var n_maxgroups = 10; // Max number of functional groups per component
+  var partable_sel = partable_box.options[partable_box.selectedIndex].value
+  var grouplist = ["ERROR"]
+  if (partable_sel == 1){
+    grouplist = grouplist1
+    } 
+    else if(partable_sel == 2){
+        grouplist = grouplist2
+    } 
+    else grouplist = grouplist3
   
   // Remove any existing selection boxes or lines for each n_components line
   var boxes = document.getElementsByClassName("box");
@@ -359,7 +323,8 @@ setButton.onclick = () => {
     
     // Create a label for each Component line
     var label = document.createElement("span");
-    label.textContent = "Component " + (i + 1) + ": ";
+    label.textContent = "Component " + (i + 1) + ":"
+    +".".repeat(22)+"Group: ";
     line.appendChild(label);
     
     // Create n_maxgroups selection boxes for each line
@@ -368,11 +333,13 @@ setButton.onclick = () => {
       var box = document.createElement("select");
       box.className = "box";
       
-      // Add some dummy options for each box
-      for (var k = 0; k < 5; k++) {
+      // Add the grouplist options for each box
+      
+      for (var k = 0; k < grouplist.length; k++) { 
         var option = document.createElement("option");
         option.value = k;
-        option.text = "Option " + (k + 1);
+        option.text = grouplist[k];
+        //option.text = "1";
         box.appendChild(option);
       }
       
@@ -386,7 +353,7 @@ setButton.onclick = () => {
     
     // Create a label for each Component line
     var label = document.createElement("span");
-    label.textContent = "_".repeat(12);
+    label.textContent = ".".repeat(28) + "Number of groups: ";
     line.appendChild(label);
     for (var j = 0; j < n_maxgroups; j++) {
       // Create a selection box
@@ -455,12 +422,7 @@ downloadButton.onclick = () => {
 </script>
 
 
-<br>
-<br>
-<br>
-<p>Comments:</p> 
-<textarea id="comment" name="comment" rows="4" cols="50">
-</textarea>
+
 
 </body>
 </html>
