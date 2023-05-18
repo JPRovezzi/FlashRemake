@@ -68,8 +68,6 @@
 </div>
 
 <script>
-var boxsepn = 0 //Separation of the selection boxes
-var boxsepv = "　" //Separation character of selection boxes
 //#region Get the problem name element.
 var problem_name = document.getElementById("problem_name");
 //#endregion
@@ -87,7 +85,6 @@ var os_option = document.createElement("option");
     os_option.text = "Windows";
 
 os_box.appendChild(os_option);
-//os.appendChild(document.createTextNode("OS:".padEnd(boxsepn,boxsepv)));
 os.appendChild(os_box);
 
 //#endregion
@@ -105,7 +102,6 @@ var model_option = document.createElement("option");
     model_option.text = "A-UNIFAC";
 
 model_box.appendChild(model_option);
-//model.appendChild(document.createTextNode("MODEL:".padEnd(boxsepn+5,boxsepv)));
 model.appendChild(model_box);
 //#endregion
 
@@ -126,7 +122,6 @@ var partable_option = document.createElement("option");
     partable_option.text = "Infinity dil.";
 
 partable_box.appendChild(partable_option);
-//partable.appendChild(document.createTextNode("PARAMETER TABLE:".padEnd(17,boxsepv)));
 partable.appendChild(partable_box);
 //#endregion
 
@@ -139,7 +134,6 @@ temperature_box.type = "number";
 temperature_box.min = "1";
 temperature_box.max = "1000000";
 temperature_box.value = "273";
-//temperature.appendChild(document.createTextNode("T (K):".padEnd(boxsepn+6,boxsepv)));
 temperature.appendChild(temperature_box);
 
 //#endregion
@@ -153,7 +147,6 @@ pressure_box.type = "number";
 pressure_box.min = "1";
 pressure_box.max = "1000000";
 pressure_box.value = "1";
-//pressure.appendChild(document.createTextNode(    "P (atm):".padEnd(boxsepn+7,boxsepv)));
 pressure.appendChild(pressure_box);
 //#endregion
 
@@ -508,6 +501,16 @@ downloadButton.onclick = () => {
         //else
         //values.push("Component " + ((i+1)/2) + ":, " + lineValues.join(", "));
     }
+    var TP = []
+    if (temperature_box.value.includes(".")){
+        TP.push(temperature_box.value)
+    }
+    else TP.push(temperature_box.value+".15")
+    if (pressure_box.value.includes(".")){
+        TP.push(pressure_box.value)
+    }
+    else TP.push(pressure_box.value+".")
+    values.push(TP)
   //#endregion
 
     values.push("0,0") //Print end of file
