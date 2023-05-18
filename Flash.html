@@ -416,9 +416,16 @@ setButton.onclick = () => {
         
         // Create a label for each Component line
         var label = document.createElement("td");
-        label.textContent = `Component ${(i + 1)}:`;
+        //label.textContent = `Component ${(i + 1)}:`;
         var grouplabel =  document.createElement("td");
+        var label_input = document.createElement("input");
+        label_input.id = "grouplabel_input";
+        label_input.className = "label_input"
+        label_input.type = "string";
+        label_input.value = `Component ${(i + 1)}:`;
+        label_input.setAttribute("size", 10); //Adjust Firefox box size 
         grouplabel.textContent = "Group:"
+        label.appendChild(label_input);
         line.appendChild(label);
         line.appendChild(grouplabel);
     
@@ -433,7 +440,6 @@ setButton.onclick = () => {
                 var option = document.createElement("option");
                 option.value = k;
                 option.text = grouplist[k];
-                //option.text = "1";
                 box.appendChild(option);
             }
       
