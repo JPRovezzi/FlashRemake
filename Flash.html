@@ -59,9 +59,9 @@
         <td id="createtable_button"></td>
     </tr>
 </table>
-<div id="wrapper">
+<table id="wrapper">
     
-</div>
+</table>
 <br>
 <br>
 <br>
@@ -410,19 +410,22 @@ setButton.onclick = () => {
     // Create n_maxgroups selection boxes for each n_components line
     for (var i = 0; i < n_components; i++) {
         // Create a container element for each n_components line
-        var line = document.createElement("div");
+        var line = document.createElement("tr");
         line.className = "line";
         wrapper.appendChild(line);
         
         // Create a label for each Component line
-        var label = document.createElement("span");
-        label.textContent = "Component " + (i + 1) + ":"
-        +".".repeat(18)+"Group: ";
+        var label = document.createElement("td");
+        label.textContent = `Component ${(i + 1)}:`;
+        var grouplabel =  document.createElement("td");
+        grouplabel.textContent = "Group:"
         line.appendChild(label);
+        line.appendChild(grouplabel);
     
         // Create n_maxgroups selection boxes for each line
         for (var j = 0; j < n_maxgroups; j++) {
             // Create a selection box
+            var box_cell = document.createElement("td");
             var box = document.createElement("select");
             box.className = "box";
             // Add the grouplist options for each box
@@ -435,19 +438,24 @@ setButton.onclick = () => {
             }
       
             // Append the box to the line
-            line.appendChild(box);
+            box_cell.appendChild(box);
+            line.appendChild(box_cell);
         }
         // Create a container element for each line
-        var line = document.createElement("div");
+        var line = document.createElement("tr");
         line.className = "line";
         wrapper.appendChild(line);
     
         // Create a label for each Component line
-        var label = document.createElement("span");
-        label.textContent = ".".repeat(22) + "Number of groups: ";
+        var label = document.createElement("td");
+        var numberlabel = document.createElement("td");
+        label.textContent = "";
+        numberlabel.textContent = "Number of groups:";
         line.appendChild(label);
+        line.appendChild(numberlabel);
         for (var j = 0; j < n_maxgroups; j++) {
             // Create a selection box
+            var ngroup_cell = document.createElement("td")
             var ngroup_Input = document.createElement("input");
             ngroup_Input.id = "ngroup_Input";
             ngroup_Input.className = "input"
@@ -459,7 +467,8 @@ setButton.onclick = () => {
             
           
             // Append the box to the line
-            line.appendChild(ngroup_Input);
+            ngroup_cell.appendChild(ngroup_Input);
+            line.appendChild(ngroup_cell);
         }
     }
     var option_size = document.querySelectorAll("option"); //Adjust box size
