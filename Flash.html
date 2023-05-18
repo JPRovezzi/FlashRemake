@@ -116,12 +116,12 @@ var partable = document.getElementById("partable");
 var partable_box = document.createElement("select");
 partable_box.className = "partable_box";
 var partable_option = document.createElement("option");
-    partable_option.value = "1";
-    partable_option.text = "Liquid-Liquid";
-    partable_box.appendChild(partable_option);
-var partable_option = document.createElement("option");
     partable_option.value = "2";
     partable_option.text = "Vapor-Liquid";
+    partable_box.appendChild(partable_option);
+var partable_option = document.createElement("option");
+    partable_option.value = "1";
+    partable_option.text = "Liquid-Liquid";
     partable_box.appendChild(partable_option);
 var partable_option = document.createElement("option");
     partable_option.value = "3";
@@ -211,7 +211,7 @@ showdata_inputButton.onclick = ()=> {
 
 //#endregion
 
-//#region Set the Group list from the partable information.
+//#region Set the Group list from the "partable" information.
 
 var grouplist1 = ["None",
     "(CH3)",
@@ -271,8 +271,8 @@ var grouplist1 = ["None",
     "(DMFA)",
     "(TMS)",
     "(ME2SO)"
-    ];
-    var grouplist2 = ["None",
+];
+var grouplist2 = ["None",
         "(CH3)",
         "(CH2)",
         "(CH)",
@@ -358,7 +358,79 @@ var grouplist1 = ["None",
         "(SIHO)",
         "(SIO)"
     ]
-    var grouplist3 = ["Empty"] 
+var grouplist3 = ["None",
+"(CH3)",
+"(CH2)",
+"(CH)",
+"(C)",
+"(CH2=CH)",
+"(CH=CH)",
+"(CH2=C)",
+"(CH=C)",
+"(C=C)",
+"(ACH)",
+"(AC)",
+"(ACCH3)",
+"(ACCH2)",
+"(ACCH)",
+"(OH)",
+"(CH3OH)",
+"(H2O)",
+"(ACOH)",
+"(CH3CO)",
+"(CH2CO)",
+"(CHO)",
+"(CH3COO)",
+"(CH2COO)",
+"(HCOO)",
+"(CH3O)",
+"(CH2O)",
+"(CH-O)",
+"(FCH2O)",
+"(CH3NH2)",
+"(CH2NH2)",
+"(CHNH2)",
+"(CH3N)",
+"(CH2N)",
+"(ACNH2)",
+"(C5H5N)",
+"(C5H4N)",
+"(C5H3N)",
+"(C5H2N)",
+"(CH3CN)",
+"(CH2CN)",
+"(CH2CL)",
+"(CHCL)",
+"(CCL)",
+"(CH2CL2)",
+"(CHCL2)",
+"(CCL2)",
+"(CHCL3)",
+"(CCL3)",
+"(CCL4)",
+"(ACCL)",
+"(CH3NO2)",
+"(CH2NO2)",
+"(CHNO2)",
+"(CNO2)",
+"(ACNO2)",
+"(FURF)",
+"(CH2OH)2",
+"(I)",
+"(BR)",
+"(ME2SO)",
+"CL-(C=C)",
+"(DMFA)",
+"(NMP)",
+"(SULFOL)",
+"(ACCOO)",
+"(CH3S)",
+"(CH2S)",
+"(DMA)",
+"(DEOH)",
+"(NFM)",
+"(TEG)"
+] 
 ;
 //#endregion
 
@@ -553,10 +625,7 @@ downloadButton.onclick = () => {
     downloadLink.click();
 };
 //#endregion
+
 </script>
-
-
-
-
 </body>
 </html>
