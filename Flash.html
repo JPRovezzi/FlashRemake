@@ -49,12 +49,18 @@
     </tr>
   </table>
 <br>
-<br>
-<div id="showdatainput">
+<div id="showdata_input">
 </div>
 <br>
+<table>
+    <tr>
+        <td>Number of components:</td>
+        <td id="ncomp_input"></td>
+        <td id="createtable_button"></td>
+    </tr>
+</table>
 <div id="wrapper">
-    Number of components:
+    
 </div>
 <br>
 <br>
@@ -176,14 +182,14 @@ var ig    = 1
 //#endregion
 
 //#region Create a button to print the data input
-var showdatainput = document.getElementById("showdatainput");
-var showdatainputButton = document.createElement("input");
-showdatainputButton.id = "showdatainput";
-showdatainputButton.type = "button";
-showdatainputButton.value = "Save";
-showdatainput.appendChild(showdatainputButton);
+var showdata_input = document.getElementById("showdata_input");
+var showdata_inputButton = document.createElement("input");
+showdata_inputButton.id = "showdata_input";
+showdata_inputButton.type = "button";
+showdata_inputButton.value = "Save";
+showdata_input.appendChild(showdata_inputButton);
 
-showdatainputButton.onclick = ()=> {
+showdata_inputButton.onclick = ()=> {
     var os_sel = os_box.options[os_box.selectedIndex].text
     var model_sel = model_box.options[model_box.selectedIndex].text
     var partable_sel = partable_box.options[partable_box.selectedIndex].text
@@ -358,6 +364,8 @@ var grouplist1 = ["None",
 
 //#region Get the wrapper element for the component's input boxes
 var wrapper = document.getElementById("wrapper");
+var ncomp_input = document.getElementById("ncomp_input");
+var createtable_button = document.getElementById("createtable_button");
 
 
 // Create an input box for n_components
@@ -367,14 +375,14 @@ nInput.type = "number";
 nInput.min = "2";
 nInput.max = "10";
 nInput.value = "2";
-wrapper.appendChild(nInput);
+ncomp_input.appendChild(nInput);
 
 // Create a set button
 var setButton = document.createElement("input");
 setButton.id = "setButton";
 setButton.type = "button";
 setButton.value = "Create table";
-wrapper.appendChild(setButton);
+createtable_button.appendChild(setButton);
 
 // Add an onclick event listener to setButton
 setButton.onclick = () => {
