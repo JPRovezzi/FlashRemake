@@ -356,9 +356,9 @@ var grouplist1 = ["None",
 ;
 //#endregion
 
-//#region Get the wrapper element for the input boxes
+//#region Get the wrapper element for the component's input boxes
 var wrapper = document.getElementById("wrapper");
-var div_download = document.getElementById("div_download");
+
 
 // Create an input box for n_components
 var nInput = document.createElement("input");
@@ -464,6 +464,7 @@ setButton.onclick = () => {
 //#endregion
 
 //#region Create a download button
+var div_download = document.getElementById("div_download");
 var downloadButton = document.createElement("input");
 downloadButton.id = "downloadButton";
 downloadButton.type = "button";
