@@ -6,32 +6,31 @@
 <h1 style="text-align: center;">"Flash-Calc"</h1>
 
 <!--Problem-->
-<p>Problem name:</p>
-<input type="text"  id="problem_name" name="name" value="llecalas2">
-<p>Data input:</p>
-<div id="os_">
+<table>
+    <tr>
+        <td>Problem name:</td>
+        <td><input type="text"  id="problem_name" name="name" value="llecalas2"></td>
+    </tr>
+</table>
 
-</div>
-<div id="model_">
-
-</div>
-<div id="partable_">
-
-</div>
 <br>
 <table>
-    <!-- Create three rows -->
+    <!-- Create rows -->
     <tr>
-      <!-- Create three cells in each row -->
+        <!-- Create cells in each row -->
+        <td>Configuration:</td>
+        <td></td>
+      </tr>
+    <tr>
       <td>OS:</td>
       <td id="os"></td>
     </tr>
     <tr>
-      <td>MODEL:</td>
+      <td>Model:</td>
       <td id="model"></td>
     </tr>
     <tr>
-      <td>PARAMETER TABLE:</td>
+      <td>Parameter table:</td>
       <td id="partable"></td>
     </tr>
     <tr>
@@ -39,16 +38,17 @@
         <td><br></td>
     </tr>
     <tr>
+        <td>T:</td>
         <td id="temperature"></td>
-        <td></td>
+        <td>K</td>
+    </tr>
+    <tr>
+        <td>P:</td>
+        <td id="pressure"></td>
+        <td>atm</td>
     </tr>
   </table>
 <br>
-<div id="temperature_">
-</div>
-<div id="pressure_">
-
-</div>
 <br>
 <div id="showdatainput">
 </div>
@@ -139,8 +139,7 @@ temperature_box.type = "number";
 temperature_box.min = "1";
 temperature_box.max = "1000000";
 temperature_box.value = "273";
-temperature.appendChild(document.createTextNode(
-    "T (K):".padEnd(boxsepn+6,boxsepv)));
+//temperature.appendChild(document.createTextNode("T (K):".padEnd(boxsepn+6,boxsepv)));
 temperature.appendChild(temperature_box);
 
 //#endregion
@@ -154,8 +153,7 @@ pressure_box.type = "number";
 pressure_box.min = "1";
 pressure_box.max = "1000000";
 pressure_box.value = "1";
-pressure.appendChild(document.createTextNode(
-    "P (atm):".padEnd(boxsepn+7,boxsepv)));
+//pressure.appendChild(document.createTextNode(    "P (atm):".padEnd(boxsepn+7,boxsepv)));
 pressure.appendChild(pressure_box);
 //#endregion
 
