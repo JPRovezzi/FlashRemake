@@ -23,15 +23,15 @@
       </tr>
     <tr>
       <td>OS:</td>
-      <td id="os"></td>
+      <td id="os_td"></td>
     </tr>
     <tr>
       <td>Model:</td>
-      <td id="model"></td>
+      <td id="model_td"></td>
     </tr>
     <tr>
       <td>Parameter table:</td>
-      <td id="partable"></td>
+      <td id="partable_td"></td>
     </tr>
     <tr>
         <td><br></td>
@@ -74,24 +74,25 @@ var problem_name = document.getElementById("problem_name");
 //#endregion
 
 //#region Get the os element selection box.
-var os = document.getElementById("os");
+var os_td = document.getElementById("os_td");
 var os_box = document.createElement("select");
-os_box.className = "os_box";
+    os_box.className = "os_box";
 var os_option = document.createElement("option");
     os_option.value = "linux_ubuntu";
     os_option.text = "Linux_Ubuntu";
-    os_box.appendChild(os_option);
+
+os_box.appendChild(os_option);
 var os_option = document.createElement("option");
     os_option.value = "windows";
     os_option.text = "Windows";
 
 os_box.appendChild(os_option);
-os.appendChild(os_box);
+os_td.appendChild(os_box);
 
 //#endregion
 
 //#region Get the model element selection box.
-var model = document.getElementById("model");
+var model_td = document.getElementById("model_td");
 var model_box = document.createElement("select");
 model_box.className = "model_box";
 var model_option = document.createElement("option");
@@ -103,11 +104,11 @@ var model_option = document.createElement("option");
     model_option.text = "A-UNIFAC";
 
 model_box.appendChild(model_option);
-model.appendChild(model_box);
+model_td.appendChild(model_box);
 //#endregion
 
 //#region Get the "partable" element selection box
-var partable = document.getElementById("partable");
+var partable_td = document.getElementById("partable_td");
 var partable_box = document.createElement("select");
 partable_box.className = "partable_box";
 var partable_option = document.createElement("option");
@@ -123,7 +124,7 @@ var partable_option = document.createElement("option");
     partable_option.text = "Infinity dil.";
 
 partable_box.appendChild(partable_option);
-partable.appendChild(partable_box);
+partable_td.appendChild(partable_box);
 //#endregion
 
 //#region Calculation config
