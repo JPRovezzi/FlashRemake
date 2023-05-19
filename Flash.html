@@ -58,9 +58,9 @@
         <td id="ncomp_input"></td>
         <td id="createtable_button"></td>
     </tr>
+<table id="wrapper_table">
 </table>
-<table id="wrapper">
-    
+<table id="tpz_table">
 </table>
 <br>
 <br>
@@ -435,10 +435,11 @@ var grouplist3 = ["None",
 //#endregion
 
 
-//#region Get the wrapper element for the component's input boxes
-var wrapper = document.getElementById("wrapper");
+//#region Get the wrapper_table element for the component's input boxes
+var wrapper_table = document.getElementById("wrapper_table");
 var ncomp_input = document.getElementById("ncomp_input");
 var createtable_button = document.getElementById("createtable_button");
+var tpz_table = document.getElementById("tpz_table");
 
 
 // Create an input box for n_components
@@ -479,6 +480,10 @@ setButton.onclick = () => {
     while (line.length > 0) {
         line[0].remove();
     }
+    var line = document.getElementsByClassName("tpz_line");
+    while (line.length > 0) {
+        line[0].remove();
+    }
     
   
     // Create n_maxgroups selection boxes for each n_components line
@@ -486,7 +491,7 @@ setButton.onclick = () => {
         // Create a container element for each n_components line
         var line = document.createElement("tr");
         line.className = "line";
-        wrapper.appendChild(line);
+        wrapper_table.appendChild(line);
         
         // Create a label for each Component line
         var label = document.createElement("td");
@@ -524,7 +529,7 @@ setButton.onclick = () => {
         // Create a container element for each line
         var line = document.createElement("tr");
         line.className = "line";
-        wrapper.appendChild(line);
+        wrapper_table.appendChild(line);
     
         // Create a label for each Component line
         var label = document.createElement("td");
@@ -557,6 +562,94 @@ setButton.onclick = () => {
             option.textContent = option.textContent.substring(0, 13) + "...";
         }
     });
+//TABLA TPZ
+    
+    //for (var i = 0; i < (nInput.value); (i++)) {
+       // var labels = document.getElementsByClassName("label_input");
+    //}
+    var n_runs = 5;
+    var tpz_head = document.createElement("tr");
+        tpz_head.className = "tpz_line";
+    
+    var tpz_th = document.createElement("th");
+        tpz_th.textContent = "Conditions";
+        tpz_th.className = "tpz_line"
+
+    var tpz_head_N = document.createElement("td");
+        tpz_head_N.textContent = "";
+    var tpz_head_T = document.createElement("td");
+        tpz_head_T.textContent = "T (K)";
+    var tpz_head_P = document.createElement("td");
+        tpz_head_P.textContent = "P (atm)";
+    
+    tpz_head.appendChild(tpz_head_N);
+    tpz_head.appendChild(tpz_head_T);
+    tpz_head.appendChild(tpz_head_P);
+    
+    for (var i = 0; i < nInput.value; i++) {
+    var tpz_head_z = document.createElement("td");
+        tpz_head_z.textContent = `z${i+1}`
+    
+    tpz_head.appendChild(tpz_head_z);
+    
+    }
+    tpz_table.appendChild(tpz_th);
+    tpz_table.appendChild(tpz_head);
+        
+    tpz_table.appendChild(tpz_head);
+
+    for (var i = 0; i < n_runs; i++) {
+        var tpz_line = document.createElement("tr");
+            tpz_line.className = "tpz_line";
+        
+        var tpz_comp = document.createElement("td");
+            tpz_comp.textContent=`Flash ${(i+1)}`;
+        
+        tpz_line.appendChild(tpz_comp);
+        
+        
+        // Create a label for each Component line
+        var tpz_T = document.createElement("td");
+        var tpz_P  =  document.createElement("td");
+        
+        var tpz_T_input = document.createElement("input");
+            tpz_T_input.id = "tpz_T_input";
+            tpz_T_input.className = "tpz_input"
+            tpz_T_input.type = "number";
+            tpz_T_input.min = "0";
+            tpz_T_input.max = "10000"; //Also adjust Chromium box size
+            tpz_T_input.value = "273";
+        
+        var tpz_P_input = document.createElement("input");
+            tpz_P_input.id = "tpz_P_input";
+            tpz_P_input.className = "tpz_input"
+            tpz_P_input.type = "number";
+            tpz_P_input.min = "1";
+            tpz_P_input.max = "10000"; //Also adjust Chromium box size
+            tpz_P_input.value = "1";
+      
+        tpz_T.appendChild(tpz_T_input);
+        tpz_P.appendChild(tpz_P_input);
+        
+        tpz_line.appendChild(tpz_T);
+        tpz_line.appendChild(tpz_P);
+
+        for (var p = 0; p < nInput.value; p++) {
+            var tpz_z = document.createElement("td");
+            var tpz_z_input = document.createElement("input");
+                tpz_z_input.id = "tpz_z_input";
+                tpz_z_input.className = "tpz_input"
+                tpz_z_input.type = "number";
+                tpz_z_input.min = "1";
+                tpz_z_input.max = "10000"; //Also adjust Chromium box size
+                tpz_z_input.value = "0";
+            tpz_z.appendChild(tpz_z_input);
+            tpz_line.appendChild(tpz_z);
+        }
+        
+                
+        tpz_table.appendChild(tpz_line);
+    }
 };
 //#endregion
 
