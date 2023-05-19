@@ -48,7 +48,12 @@
         <td id="ncomp_input"></td>
         <td id="createtable_button"></td>
     </tr>
+<table id="ncomp_table">
+</table>
 <table id="wrapper_table">
+</table>
+<br>
+<table id="nflash_table">
 </table>
 <table id="tpz_table">
 </table>
@@ -399,7 +404,7 @@ var grouplist3 = ["None",
 
 
 //#region Get the wrapper_table element for the component's input boxes
-var n_runs = 5;
+var nflash = 1;
 var wrapper_table = document.getElementById("wrapper_table");
 var ncomp_input = document.getElementById("ncomp_input");
 var createtable_button = document.getElementById("createtable_button");
@@ -452,6 +457,11 @@ setButton.onclick = () => {
     while (line.length > 0) {
         line[0].remove();
     }
+    var line = document.getElementById("tpz_table");
+    while (line.length > 0) {
+        line[0].remove();
+    }
+    
     
   
     // Create n_maxgroups selection boxes for each n_components line
@@ -546,9 +556,9 @@ setButton.onclick = () => {
         nflash_input.id = "nflash_input";
         nflash_input.className = "input"
         nflash_input.type = "number";
-        nflash_input.min = "0";
+        nflash_input.min = "1";
         nflash_input.max = "10"; //Also adjust Chromium box size
-        nflash_input.value = "0";
+        nflash_input.value = "1";
         nflash_input.setAttribute("size", 5); //Adjust Firefox box size     
     var tpz_table_td = document.createElement("td");
         
@@ -557,7 +567,12 @@ setButton.onclick = () => {
         tpz_table_button.type = "button";
         tpz_table_button.value = "Create table";
         tpz_table_button.onclick = () => {
-            
+            var tpz_table_delete = document.getElementById("tpz_table");
+            while (tpz_table_delete.length > 0) {
+            tpz_table_delete.remove();
+            console.log("H")
+            };
+            nflash = nflash_input.value;
             var tpz_head = document.createElement("tr");
             tpz_head.className = "tpz_line";
     
@@ -588,7 +603,7 @@ setButton.onclick = () => {
         
             tpz_table.appendChild(tpz_head);
 
-            for (var i = 0; i < n_runs; i++) {
+            for (var i = 0; i < nflash; i++) {
                 var tpz_line = document.createElement("tr");
                 tpz_line.className = "tpz_line";
         
@@ -647,7 +662,7 @@ setButton.onclick = () => {
         line.appendChild(nflash_label_td);
         line.appendChild(nflash_input_td);
         line.appendChild(tpz_table_td);
-        wrapper_table.appendChild(line);
+        tpz_table.appendChild(line);
 };
 //#endregion
 
@@ -691,17 +706,24 @@ downloadButton.onclick = () => {
     var TP_inputs = document.getElementsByClassName("tp_input");
     jj = 0
     kk = 0
-    for (var j = 0; j < (n_runs); (j++)) {
+    for (var j = 0; j < (nflash); (j++)) {
         z_values=[]
         TP_values=[]
         for (var k = 0; k < nInput.value; k++){
-            z_values.push(z_inputs[jj].value);
+            if (z_inputs[jj].value == 0){
+                z_values.push(".00000001")
+            } else if ((z_inputs[jj].value).includes(".")){
+                z_values.push(z_inputs[jj].value);
+            } else z_values.push(z_inputs[jj].value+".");
             jj++;
         }
-
-        TP_values.push(TP_inputs[kk].value);
+        if ((TP_inputs[kk].value).includes(".")){
+                TP_values.push(TP_inputs[kk].value);
+            } else TP_values.push(TP_inputs[kk].value+".");
         kk++;
-        TP_values.push(TP_inputs[kk].value);
+        if ((TP_inputs[kk].value).includes(".")){
+                TP_values.push(TP_inputs[kk].value);
+            } else TP_values.push(TP_inputs[kk].value+".");
         kk++;
         values.push(TP_values.join(","));
         values.push(z_values.join(","));
