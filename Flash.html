@@ -37,16 +37,6 @@
         <td><br></td>
         <td><br></td>
     </tr>
-    <tr>
-        <td>T:</td>
-        <td id="temperature"></td>
-        <td>K</td>
-    </tr>
-    <tr>
-        <td>P:</td>
-        <td id="pressure"></td>
-        <td>atm</td>
-    </tr>
   </table>
 <br>
 <div id="showdata_input">
@@ -131,31 +121,6 @@ partable_box.appendChild(partable_option);
 partable.appendChild(partable_box);
 //#endregion
 
-//#region Get the temperature element input box 
-var temperature = document.getElementById("temperature");
-var temperature_box = document.createElement("input");
-temperature_box.className = "temperature_box";
-temperature_box.id = "temperature_box";
-temperature_box.type = "number";
-temperature_box.min = "1";
-temperature_box.max = "1000000";
-temperature_box.value = "273";
-temperature.appendChild(temperature_box);
-
-//#endregion
-
-//#region Get the pressure element input box 
-var pressure = document.getElementById("pressure");
-var pressure_box = document.createElement("input");
-pressure_box.className = "pressure_box";
-pressure_box.id = "pressure_box";
-pressure_box.type = "number";
-pressure_box.min = "1";
-pressure_box.max = "1000000";
-pressure_box.value = "1";
-pressure.appendChild(pressure_box);
-//#endregion
-
 //#region Calculation config
 /*
     '!   icalc:  0-' **** FLASH CALCULATION ****'
@@ -199,8 +164,6 @@ showdata_inputButton.onclick = ()=> {
     "#-OPERATING-SYSTEM:".padEnd(24,"_")    + os_sel    + "\n"  +
     "#-MODEL:".padEnd(25,"_")               + model_sel + "\n"  +
     "#-PARAMETERS-TABLE:".padEnd(24,"_")    + partable_sel  + "\n\n"        +
-    "#-TEMPERATURE_(K):".padEnd(24,"_")     + temperature_box.value + "\n"  +
-    "#-PRESSURE_(ATM):".padEnd(25,"_")      + pressure_box.value    + "\n\n"    +
     "-> FLASH-CALCULATION;".padEnd(0,"_")   + "\n"  +
     `-> COMPARISON OF ACTIVITIES CALCULATED BY ${model_sel};`   + "\n"      +
     "-> OPEN 'lleasoccuzada.OUT';"  + "\n"  +
@@ -436,6 +399,7 @@ var grouplist3 = ["None",
 
 
 //#region Get the wrapper_table element for the component's input boxes
+var n_runs = 5;
 var wrapper_table = document.getElementById("wrapper_table");
 var ncomp_input = document.getElementById("ncomp_input");
 var createtable_button = document.getElementById("createtable_button");
@@ -484,6 +448,10 @@ setButton.onclick = () => {
     while (line.length > 0) {
         line[0].remove();
     }
+    var line = document.getElementsByClassName("tpz_table_button");
+    while (line.length > 0) {
+        line[0].remove();
+    }
     
   
     // Create n_maxgroups selection boxes for each n_components line
@@ -494,17 +462,13 @@ setButton.onclick = () => {
         wrapper_table.appendChild(line);
         
         // Create a label for each Component line
-        var label = document.createElement("td");
+        //var label = document.createElement("td");
         //label.textContent = `Component ${(i + 1)}:`;
+        var label = document.createElement("td");
+            label.textContent = `Component ${(i + 1)}:`;
         var grouplabel =  document.createElement("td");
-        var label_input = document.createElement("input");
-        label_input.id = "grouplabel_input";
-        label_input.className = "label_input"
-        label_input.type = "string";
-        label_input.value = `Component ${(i + 1)}:`;
-        label_input.setAttribute("size", 10); //Adjust Firefox box size 
-        grouplabel.textContent = "Group:"
-        label.appendChild(label_input);
+            grouplabel.textContent = "Group:"
+        
         line.appendChild(label);
         line.appendChild(grouplabel);
     
@@ -528,16 +492,24 @@ setButton.onclick = () => {
         }
         // Create a container element for each line
         var line = document.createElement("tr");
-        line.className = "line";
+            line.className = "line";
         wrapper_table.appendChild(line);
     
         // Create a label for each Component line
         var label = document.createElement("td");
+        var label_input = document.createElement("input");
+        label_input.id = "grouplabel_input";
+        label_input.className = "label_input"
+        label_input.type = "string";
+        label_input.value = "";
+        label_input.setAttribute("size", 10); //Adjust Firefox box size 
         var numberlabel = document.createElement("td");
-        label.textContent = "";
-        numberlabel.textContent = "Number of groups:";
-        line.appendChild(label);
+            numberlabel.textContent = "Number of groups:";
+        
+        label.appendChild(label_input);
+        line.appendChild(label);      
         line.appendChild(numberlabel);
+
         for (var j = 0; j < n_maxgroups; j++) {
             // Create a selection box
             var ngroup_cell = document.createElement("td")
@@ -560,96 +532,122 @@ setButton.onclick = () => {
     option_size.forEach(function(option) {
         if (option.textContent.length > 13) {
             option.textContent = option.textContent.substring(0, 13) + "...";
-        }
+        };
     });
-//TABLA TPZ
     
-    //for (var i = 0; i < (nInput.value); (i++)) {
-       // var labels = document.getElementsByClassName("label_input");
-    //}
-    var n_runs = 5;
-    var tpz_head = document.createElement("tr");
-        tpz_head.className = "tpz_line";
+    //Create TPZ Table
     
-    var tpz_th = document.createElement("th");
-        tpz_th.textContent = "Conditions";
-        tpz_th.className = "tpz_line"
+    var line = document.createElement("tr");
+        line.className = "tpz_table_button"
+    var nflash_label_td = document.createElement("td");
+        nflash_label_td.textContent = "# of flash calculations:"
+    var nflash_input_td = document.createElement("td");
+    var nflash_input = document.createElement("input");
+        nflash_input.id = "nflash_input";
+        nflash_input.className = "input"
+        nflash_input.type = "number";
+        nflash_input.min = "0";
+        nflash_input.max = "10"; //Also adjust Chromium box size
+        nflash_input.value = "0";
+        nflash_input.setAttribute("size", 5); //Adjust Firefox box size     
+    var tpz_table_td = document.createElement("td");
+        
+    var tpz_table_button = document.createElement("input");
+        tpz_table_button.id = "tpz_table_button";
+        tpz_table_button.type = "button";
+        tpz_table_button.value = "Create table";
+        tpz_table_button.onclick = () => {
+            
+            var tpz_head = document.createElement("tr");
+            tpz_head.className = "tpz_line";
+    
+            var tpz_th = document.createElement("th");
+            tpz_th.textContent = "Conditions";
+            tpz_th.className = "tpz_line"
 
-    var tpz_head_N = document.createElement("td");
-        tpz_head_N.textContent = "";
-    var tpz_head_T = document.createElement("td");
-        tpz_head_T.textContent = "T (K)";
-    var tpz_head_P = document.createElement("td");
-        tpz_head_P.textContent = "P (atm)";
+            var tpz_head_N = document.createElement("td");
+            tpz_head_N.textContent = "";
+            var tpz_head_T = document.createElement("td");
+            tpz_head_T.textContent = "T (K)";
+            var tpz_head_P = document.createElement("td");
+            tpz_head_P.textContent = "P (atm)";
     
-    tpz_head.appendChild(tpz_head_N);
-    tpz_head.appendChild(tpz_head_T);
-    tpz_head.appendChild(tpz_head_P);
+            tpz_head.appendChild(tpz_head_N);
+            tpz_head.appendChild(tpz_head_T);
+            tpz_head.appendChild(tpz_head_P);
     
-    for (var i = 0; i < nInput.value; i++) {
-    var tpz_head_z = document.createElement("td");
-        tpz_head_z.textContent = `z${i+1}`
+            for (var i = 0; i < nInput.value; i++) {
+                var tpz_head_z = document.createElement("td");
+                tpz_head_z.textContent = `z${i+1}`
     
-    tpz_head.appendChild(tpz_head_z);
+                tpz_head.appendChild(tpz_head_z);
     
-    }
-    tpz_table.appendChild(tpz_th);
-    tpz_table.appendChild(tpz_head);
+            }
+            tpz_table.appendChild(tpz_th);
+            tpz_table.appendChild(tpz_head);
         
-    tpz_table.appendChild(tpz_head);
+            tpz_table.appendChild(tpz_head);
 
-    for (var i = 0; i < n_runs; i++) {
-        var tpz_line = document.createElement("tr");
-            tpz_line.className = "tpz_line";
+            for (var i = 0; i < n_runs; i++) {
+                var tpz_line = document.createElement("tr");
+                tpz_line.className = "tpz_line";
         
-        var tpz_comp = document.createElement("td");
-            tpz_comp.textContent=`Flash ${(i+1)}`;
+                var tpz_comp = document.createElement("td");
+                tpz_comp.textContent=`Flash ${(i+1)}`;
         
-        tpz_line.appendChild(tpz_comp);
+                tpz_line.appendChild(tpz_comp);
         
         
-        // Create a label for each Component line
-        var tpz_T = document.createElement("td");
-        var tpz_P  =  document.createElement("td");
+                // Create a label for each Component line
+                var tpz_T = document.createElement("td");
+                var tpz_P  =  document.createElement("td");
         
-        var tpz_T_input = document.createElement("input");
-            tpz_T_input.id = "tpz_T_input";
-            tpz_T_input.className = "tpz_input"
-            tpz_T_input.type = "number";
-            tpz_T_input.min = "0";
-            tpz_T_input.max = "10000"; //Also adjust Chromium box size
-            tpz_T_input.value = "273";
+                var tpz_T_input = document.createElement("input");
+                tpz_T_input.id = "tpz_T_input";
+                tpz_T_input.className = "tp_input"
+                tpz_T_input.type = "number";
+                tpz_T_input.min = "0";
+                tpz_T_input.max = "10000"; //Also adjust Chromium box size
+                tpz_T_input.value = "273";
         
-        var tpz_P_input = document.createElement("input");
-            tpz_P_input.id = "tpz_P_input";
-            tpz_P_input.className = "tpz_input"
-            tpz_P_input.type = "number";
-            tpz_P_input.min = "1";
-            tpz_P_input.max = "10000"; //Also adjust Chromium box size
-            tpz_P_input.value = "1";
+                var tpz_P_input = document.createElement("input");
+                tpz_P_input.id = "tpz_P_input";
+                tpz_P_input.className = "tp_input"
+                tpz_P_input.type = "number";
+                tpz_P_input.min = "1";
+                tpz_P_input.max = "10000"; //Also adjust Chromium box size
+                tpz_P_input.value = "1";
       
-        tpz_T.appendChild(tpz_T_input);
-        tpz_P.appendChild(tpz_P_input);
+                tpz_T.appendChild(tpz_T_input);
+                tpz_P.appendChild(tpz_P_input);
         
-        tpz_line.appendChild(tpz_T);
-        tpz_line.appendChild(tpz_P);
+                tpz_line.appendChild(tpz_T);
+                tpz_line.appendChild(tpz_P);
 
-        for (var p = 0; p < nInput.value; p++) {
-            var tpz_z = document.createElement("td");
-            var tpz_z_input = document.createElement("input");
-                tpz_z_input.id = "tpz_z_input";
-                tpz_z_input.className = "tpz_input"
-                tpz_z_input.type = "number";
-                tpz_z_input.min = "1";
-                tpz_z_input.max = "10000"; //Also adjust Chromium box size
-                tpz_z_input.value = "0";
-            tpz_z.appendChild(tpz_z_input);
-            tpz_line.appendChild(tpz_z);
-        }
+                for (var p = 0; p < nInput.value; p++) {
+                    var tpz_z = document.createElement("td");
+                    var tpz_z_input = document.createElement("input");
+                    tpz_z_input.id = "tpz_z_input";
+                    tpz_z_input.className = "z_input"
+                    tpz_z_input.type = "number";
+                    tpz_z_input.min = "1";
+                    tpz_z_input.max = "10000"; //Also adjust Chromium box size
+                    tpz_z_input.value = "0";
+                    tpz_z.appendChild(tpz_z_input);
+                    tpz_line.appendChild(tpz_z);
+                }
         
                 
-        tpz_table.appendChild(tpz_line);
-    }
+                tpz_table.appendChild(tpz_line);
+            }    
+        };
+    
+        tpz_table_td.appendChild(tpz_table_button);
+        nflash_input_td.appendChild(nflash_input)
+        line.appendChild(nflash_label_td);
+        line.appendChild(nflash_input_td);
+        line.appendChild(tpz_table_td);
+        wrapper_table.appendChild(line);
 };
 //#endregion
 
@@ -683,25 +681,34 @@ downloadButton.onclick = () => {
             lineValues.push(boxes[j].value);
             lineValues.push(inputs[j].value);
         }
-        //for (var j = 0; j < inputs.length; j++) {
-            //lineValues.push(inputs[j].value);
-            //}
         if (i % 2 == 0)
         values.push(lineValues.join(","));
-        //values.push("Component " + ((i/2)+1) + ":, " + lineValues.join(", "));
-        //else
-        //values.push("Component " + ((i+1)/2) + ":, " + lineValues.join(", "));
     }
-    var TP = []
-    if (temperature_box.value.includes(".")){
-        TP.push(temperature_box.value)
-    }
-    else TP.push(temperature_box.value+".15")
-    if (pressure_box.value.includes(".")){
-        TP.push(pressure_box.value)
-    }
-    else TP.push(pressure_box.value+".")
-    values.push(TP)
+    
+    var z_values = [];
+    var TP_values = [];
+    var z_inputs = document.getElementsByClassName("z_input");
+    var TP_inputs = document.getElementsByClassName("tp_input");
+    jj = 0
+    kk = 0
+    for (var j = 0; j < (n_runs); (j++)) {
+        z_values=[]
+        TP_values=[]
+        for (var k = 0; k < nInput.value; k++){
+            z_values.push(z_inputs[jj].value);
+            jj++;
+        }
+
+        TP_values.push(TP_inputs[kk].value);
+        kk++;
+        TP_values.push(TP_inputs[kk].value);
+        kk++;
+        values.push(TP_values.join(","));
+        values.push(z_values.join(","));
+    };
+
+        
+    
   //#endregion
 
     values.push("0,0") //Print end of file
