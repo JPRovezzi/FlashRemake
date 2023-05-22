@@ -4,7 +4,8 @@ import * as gramjs from './gruposram.js'
 
 export function remover(){
     // Remove any existing selection boxes or lines for each ncomp_value line
-    complabel_td.textContent = " "
+    complabel_td.textContent = " ";
+    flashlabel_td.textContent  = " ";
     var buttons = document.getElementsByClassName("button");
     while (buttons.length > 0) {
         buttons[0].remove();
@@ -18,6 +19,27 @@ export function remover(){
     while (line.length > 0) {
         line[0].remove();
     }
+    var line = document.getElementsByClassName("tpz_line");
+    while (line.length > 0) {
+        line[0].remove();
+    }
+    var tpzline = document.getElementsByClassName("tpz_table_button");
+    while (tpzline.length > 0) {
+        tpzline[0].remove();
+    }
+    var line = document.getElementById("tpz_table");
+    while (line.length > 0) {
+        line[0].remove();
+    }
+}
+//#endregion
+
+//#region tpzremover function
+
+export function tpzremover(){
+    // Remove any existing selection boxes or lines for each ncomp_value line
+    complabel_td.textContent = " ";
+    flashlabel_td.textContent  = " ";
     var line = document.getElementsByClassName("tpz_line");
     while (line.length > 0) {
         line[0].remove();
@@ -72,7 +94,7 @@ export function savealert(
 
 export function compinput(partable_box){
     
-    //var nflash = 1;
+    //var nflash_value = 1;
     var wrapper_table = document.getElementById("wrapper_table");
     var ncomp_td = document.getElementById("ncomp_td");
     var complabel_td = document.getElementById("complabel_td");
@@ -108,6 +130,7 @@ export function compinput(partable_box){
 //#endregion
 
 //#region Create component table subroutine
+
 export function comptable(ncomp_input,partable_box){
     
     remover();   
@@ -205,65 +228,102 @@ export function comptable(ncomp_input,partable_box){
     });
     
     //Create TPZ Table
-    
-    var line = document.createElement("tr");
-        line.className = "tpz_table_button"
-    var nflash_label_td = document.createElement("td");
-        nflash_label_td.textContent = "# of flash calculations:"
-    var nflash_input_td = document.createElement("td");
+    savecomp(ncomp_input);
+
+}
+//#endregion
+
+//#region Create Save button for component table
+
+export function savecomp(ncomp_input){
+    var savecomp_div = document.getElementById("savecomp_div");
+    var savecomp_button = document.createElement("input");
+        savecomp_button.className = "button"
+        savecomp_button.id = "saveconfig_button";
+        savecomp_button.type = "button";
+        savecomp_button.value = "Save";
+        savecomp_button.onclick = () => {
+            tpzremover();
+            tpz(ncomp_input);
+            console.log("H");
+        }
+        savecomp_div.appendChild(savecomp_button);
+}
+
+
+//#endregion
+
+//#region create a button to TPZ table
+export function tpz(ncomp_input){
+    var flashlabel_td = document.getElementById("flashlabel_td");
+        //flashlabel_td.className = "tpz_line"
+        flashlabel_td.textContent = "# of flash calculations:";
+
     var nflash_input = document.createElement("input");
         nflash_input.id = "nflash_input";
-        nflash_input.className = "input"
+        nflash_input.className = "tpz_line";
         nflash_input.type = "number";
         nflash_input.min = "1";
         nflash_input.max = "10"; //Also adjust Chromium box size
         nflash_input.value = "1";
         nflash_input.setAttribute("size", 5); //Adjust Firefox box size     
-    var tpz_table_td = document.createElement("td");
         
     var tpz_table_button = document.createElement("input");
         tpz_table_button.id = "tpz_table_button";
-        tpz_table_button.className="button"
+        tpz_table_button.className="tpz_line";
         tpz_table_button.type = "button";
         tpz_table_button.value = "Create table";
         tpz_table_button.onclick = () => {
-            var tpz_table_delete = document.getElementById("tpz_table");
-            while (tpz_table_delete.length > 0) {
-            tpz_table_delete.remove();
-            console.log("H")
-            };
-            nflash = nflash_input.value;
-            var tpz_head = document.createElement("tr");
-            tpz_head.className = "tpz_line";
-    
-            var tpz_th = document.createElement("th");
-            tpz_th.textContent = "Conditions";
-            tpz_th.className = "tpz_line"
+            tpzremover();
+            tpztable(nflash_input,ncomp_input);
+        }
+        nflash_td.appendChild(nflash_input);
+        flashtable_td.appendChild(tpz_table_button);
+}
 
-            var tpz_head_N = document.createElement("td");
-            tpz_head_N.textContent = "";
-            var tpz_head_T = document.createElement("td");
-            tpz_head_T.textContent = "T (K)";
-            var tpz_head_P = document.createElement("td");
-            tpz_head_P.textContent = "P (atm)";
+//#endregion
+
+
+
+//#region Create TPZ Table
+
+export function tpztable(nflash_input, ncomp_input){
+    var nflash_value = nflash_input.value;
     
-            tpz_head.appendChild(tpz_head_N);
-            tpz_head.appendChild(tpz_head_T);
-            tpz_head.appendChild(tpz_head_P);
+    var tpz_head = document.createElement("tr");
+        tpz_head.className = "tpz_line";
     
-            for (var i = 0; i < ncomp_input.value; i++) {
-                var tpz_head_z = document.createElement("td");
-                tpz_head_z.textContent = `z${i+1}`
+    var tpz_th = document.createElement("th");
+        tpz_th.textContent = "Conditions:";
+        tpz_th.className = "tpz_line"
     
-                tpz_head.appendChild(tpz_head_z);
+    var tpz_head_N = document.createElement("td");
+        tpz_head_N.textContent = "";
     
-            }
-            tpz_table.appendChild(tpz_th);
+    var tpz_head_T = document.createElement("td");
+        tpz_head_T.textContent = "T (K)";
+    
+    var tpz_head_P = document.createElement("td");
+        tpz_head_P.textContent = "P (atm)";
+    
+    tpz_head.appendChild(tpz_head_N);
+    tpz_head.appendChild(tpz_head_T);
+    tpz_head.appendChild(tpz_head_P);
+    
+    for (var i = 0; i < ncomp_input.value; i++) {
+        var tpz_head_z = document.createElement("td");
+            tpz_head_z.textContent = `z${i+1}`;
+    
+            tpz_head.appendChild(tpz_head_z);
+    
+        }
+    
+    tpz_table.appendChild(tpz_th);
             tpz_table.appendChild(tpz_head);
         
             tpz_table.appendChild(tpz_head);
 
-            for (var i = 0; i < nflash; i++) {
+            for (var i = 0; i < nflash_value; i++) {
                 var tpz_line = document.createElement("tr");
                 tpz_line.className = "tpz_line";
         
@@ -279,7 +339,7 @@ export function comptable(ncomp_input,partable_box){
         
                 var tpz_T_input = document.createElement("input");
                 tpz_T_input.id = "tpz_T_input";
-                tpz_T_input.className = "tp_input"
+                tpz_T_input.className = "tp_input";
                 tpz_T_input.type = "number";
                 tpz_T_input.min = "0";
                 tpz_T_input.max = "10000"; //Also adjust Chromium box size
@@ -317,11 +377,39 @@ export function comptable(ncomp_input,partable_box){
             }    
         };
     
-        tpz_table_td.appendChild(tpz_table_button);
-        nflash_input_td.appendChild(nflash_input)
-        line.appendChild(nflash_label_td);
-        line.appendChild(nflash_input_td);
-        line.appendChild(tpz_table_td);
-        tpz_table.appendChild(line);
-}
+        //tpz_table_td.appendChild(tpz_table_button);
+        //nflash_input_td.appendChild(nflash_input)
+        //line.appendChild(nflash_label_td);
+        //line.appendChild(nflash_input_td);
+        //line.appendChild(tpz_table_td);
+        //tpz_table.appendChild(line);
+
+
 //#endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

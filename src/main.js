@@ -83,14 +83,6 @@ var novap = 0
 var ig    = 1
 //#endregion
 
-//#region Set the Group list from the "partable" information.
-/*
-var grouplist = [
-    "Empty",gramjs.grouplist1,gramjs.grouplist2,gramjs.grouplist3];
-*/
-
-//#endregion
-
 //#region Create a button to print the data input
 var saveconfig_div = document.getElementById("saveconfig_div");
 var saveconfig_button = document.createElement("input");
