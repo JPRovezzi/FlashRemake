@@ -88,7 +88,9 @@ var saveconfig_button = document.createElement("input");
     saveconfig_button.id = "saveconfig_button";
     saveconfig_button.type = "button";
     saveconfig_button.value = "Save";
-    saveconfig_button.onclick = () => {fjs.savealert(os_box,model_box,partable_box,problem_name)}
+    saveconfig_button.onclick = () => {
+        fjs.savealert(os_box,model_box,partable_box,problem_name)
+    }
     saveconfig_div.appendChild(saveconfig_button);
     
 //#endregion
