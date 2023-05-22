@@ -4,7 +4,7 @@ import * as gramjs from './gruposram.js'
 
 export function remover(){
     // Remove any existing selection boxes or lines for each ncomp_value line
-    complabel_td.textContent = " ";
+    //complabel_td.textContent = " ";
     flashlabel_td.textContent  = " ";
     var buttons = document.getElementsByClassName("button");
     while (buttons.length > 0) {
@@ -34,12 +34,36 @@ export function remover(){
 }
 //#endregion
 
+//#region compremover function
+export function compremover(){
+    complabel_td.textContent = " ";
+    var remove_element = document.getElementsByClassName("comp_button");
+    while (remove_element.length > 0) {
+        remove_element[0].remove();
+    };
+    flash_remover();
+}
+
+
+//#endregion
+
+//#region tpzinput remover function
+export function flash_remover(){
+    flashlabel_td.textContent = " ";
+    var remove_element = document.getElementsByClassName("tpz_button");
+    while (remove_element.length > 0) {
+        remove_element[0].remove();
+    };
+}
+
+//#endregion
+
 //#region tpzremover function
 
 export function tpzremover(){
     // Remove any existing selection boxes or lines for each ncomp_value line
-    complabel_td.textContent = " ";
-    flashlabel_td.textContent  = " ";
+    //complabel_td.textContent = " ";
+    //flashlabel_td.textContent  = " ";
     var line = document.getElementsByClassName("tpz_line");
     while (line.length > 0) {
         line[0].remove();
@@ -108,7 +132,7 @@ export function compinput(partable_box){
     // Create an input box for n_components
     var ncomp_input = document.createElement("input");
         ncomp_input.id = "ncomp_input";
-        ncomp_input.className="button"
+        ncomp_input.className="comp_button"
         ncomp_input.type = "number";
         ncomp_input.min = "2";
         ncomp_input.max = "10";
@@ -117,14 +141,17 @@ export function compinput(partable_box){
 
     // Create a set button
     var setButton = document.createElement("input");
-        setButton.className="button"
+        setButton.className="comp_button"
         setButton.id = "setButton";
         setButton.type = "button";
         setButton.value = "Create table";
         comptable_td.appendChild(setButton);
 
     // Add an onclick event listener to setButton
-    setButton.onclick = () => {comptable(ncomp_input,partable_box)}    
+    setButton.onclick = () => {
+        comptable(ncomp_input,partable_box);
+        flash_remover();
+    }    
     };
 
 //#endregion
@@ -243,6 +270,7 @@ export function savecomp(ncomp_input){
         savecomp_button.type = "button";
         savecomp_button.value = "Save";
         savecomp_button.onclick = () => {
+            flash_remover();
             tpzremover();
             tpz(ncomp_input);
             console.log("H");
@@ -261,7 +289,7 @@ export function tpz(ncomp_input){
 
     var nflash_input = document.createElement("input");
         nflash_input.id = "nflash_input";
-        nflash_input.className = "tpz_line";
+        nflash_input.className = "tpz_button";
         nflash_input.type = "number";
         nflash_input.min = "1";
         nflash_input.max = "10"; //Also adjust Chromium box size
@@ -270,7 +298,7 @@ export function tpz(ncomp_input){
         
     var tpz_table_button = document.createElement("input");
         tpz_table_button.id = "tpz_table_button";
-        tpz_table_button.className="tpz_line";
+        tpz_table_button.className="tpz_button";
         tpz_table_button.type = "button";
         tpz_table_button.value = "Create table";
         tpz_table_button.onclick = () => {
@@ -282,8 +310,6 @@ export function tpz(ncomp_input){
 }
 
 //#endregion
-
-
 
 //#region Create TPZ Table
 
@@ -365,9 +391,10 @@ export function tpztable(nflash_input, ncomp_input){
                     tpz_z_input.id = "tpz_z_input";
                     tpz_z_input.className = "z_input"
                     tpz_z_input.type = "number";
-                    tpz_z_input.min = "1";
+                    tpz_z_input.min = "0";
                     tpz_z_input.max = "10000"; //Also adjust Chromium box size
                     tpz_z_input.value = "0";
+                    tpz_z_input.step = "0.05";
                     tpz_z.appendChild(tpz_z_input);
                     tpz_line.appendChild(tpz_z);
                 }
@@ -376,16 +403,111 @@ export function tpztable(nflash_input, ncomp_input){
                 tpz_table.appendChild(tpz_line);
             }    
         };
-    
-        //tpz_table_td.appendChild(tpz_table_button);
-        //nflash_input_td.appendChild(nflash_input)
-        //line.appendChild(nflash_label_td);
-        //line.appendChild(nflash_input_td);
-        //line.appendChild(tpz_table_td);
-        //tpz_table.appendChild(line);
-
 
 //#endregion
+
+
+/*
+//#region Create Download Button
+export function makedownload(){
+    var div_download = document.getElementById("div_download");
+    var downloadButton = document.createElement("input");
+        downloadButton.id = "downloadButton";
+        downloadButton.type = "button";
+        downloadButton.value = "Download";
+    
+    // Add an onclick event listener to downloadButton
+    downloadButton.onclick = () => {download()};
+    div_download.appendChild(downloadButton);
+}
+//#endregion
+
+//#region Download Subroutine
+export function download(){
+    var values = [];
+    
+    var model_box = document.getElementsByClassName("model_box");
+    var model_sel = model_box.options[model_box.selectedIndex].value;
+    var partable_sel = partable_box.options[partable_box.selectedIndex].value;
+
+    values.push(`"${problem_name.value}"`); //Print name of file
+    values.push(
+        `${icalc},${model_sel},${ipr},${iout},${novap},${ig},${partable_sel}`);  
+    
+    values.push(`${nInput.value}`);
+    var lines = document.getElementsByClassName("line");
+    for (var i = 0; i < (lines.length-1); (i++)) {
+        var lineValues = [];
+        var boxes = lines[i].getElementsByClassName("box");
+        var inputs = lines[i+1].getElementsByClassName("input");
+        for (var j = 0; j < boxes.length; j++) {
+            lineValues.push(boxes[j].value);
+            lineValues.push(inputs[j].value);
+        }
+        if (i % 2 == 0)
+        values.push(lineValues.join(","));
+    }
+    
+    var z_values = [];
+    var TP_values = [];
+    var z_inputs = document.getElementsByClassName("z_input");
+    var TP_inputs = document.getElementsByClassName("tp_input");
+    jj = 0
+    kk = 0
+    for (var j = 0; j < (nflash_input.value); (j++)) {
+        z_values=[]
+        TP_values=[]
+        for (var k = 0; k < ncomp_input.value; k++){
+            if (z_inputs[jj].value == 0){
+                z_values.push(".00000001")
+            } else if ((z_inputs[jj].value).includes(".")){
+                z_values.push(z_inputs[jj].value);
+            } else z_values.push(z_inputs[jj].value+".");
+            jj++;
+        }
+        if ((TP_inputs[kk].value).includes(".")){
+                TP_values.push(TP_inputs[kk].value);
+            } else TP_values.push(TP_inputs[kk].value+".");
+        kk++;
+        if ((TP_inputs[kk].value).includes(".")){
+                TP_values.push(TP_inputs[kk].value);
+            } else TP_values.push(TP_inputs[kk].value+".");
+        kk++;
+        values.push(TP_values.join(","));
+        values.push(z_values.join(","));
+    };
+
+    values.push("0,0") //Print end of file
+
+    // Create a text file from the values
+    var textFileAsBlob = new Blob([values.join("\n")], {type: 'text/plain'});
+  
+    // Create a link element to download the file
+    var downloadLink = document.createElement("a");
+    downloadLink.download = problem_name.value+".dat";
+  
+    // Use createObjectURL to create a URL for the file
+    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+  
+    // Click the link to download the file
+    downloadLink.click();
+}
+//#endregion
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

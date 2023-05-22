@@ -90,37 +90,41 @@ var saveconfig_button = document.createElement("input");
     saveconfig_button.type = "button";
     saveconfig_button.value = "Save";
     saveconfig_button.onclick = () => {
+        fjs.compremover();
         fjs.savealert(
-            os_box,model_box,partable_box,problem_name)
+            os_box,model_box,partable_box,problem_name);
+        
     }
     saveconfig_div.appendChild(saveconfig_button);
     
 //#endregion
 
+//#region Create Download Button
+//function makedownload(){
+    var div_download = document.getElementById("div_download");
+    var downloadButton = document.createElement("input");
+        downloadButton.id = "downloadButton";
+        downloadButton.type = "button";
+        downloadButton.value = "Download";
+    
+    // Add an onclick event listener to downloadButton
+    downloadButton.onclick = () => {download()};
+    div_download.appendChild(downloadButton);
+//}
+//#endregion
 
-
- /*   
-//#region Create a download button
-var div_download = document.getElementById("div_download");
-var downloadButton = document.createElement("input");
-downloadButton.id = "downloadButton";
-downloadButton.type = "button";
-downloadButton.value = "Download";
-div_download.appendChild(downloadButton);
-// Add an onclick event listener to downloadButton
-downloadButton.onclick = () => {
+//#region Download Subroutine
+function download(){
     var values = [];
     
-    var model_sel = model_box.options[model_box.selectedIndex].value
-    var partable_sel = partable_box.options[partable_box.selectedIndex].value
+    var model_sel = model_box.options[model_box.selectedIndex].value;
+    var partable_sel = partable_box.options[partable_box.selectedIndex].value;
 
-    values.push(`"${problem_name.value}"`) //Print name of file
+    values.push(`"${problem_name.value}"`); //Print name of file
     values.push(
-        `${icalc},${model_sel},${ipr},${iout},${novap},${ig},${partable_sel}`)
-    //#region Get all the input and selection values
+        `${icalc},${model_sel},${ipr},${iout},${novap},${ig},${partable_sel}`);  
     
-    
-    values.push(`${nInput.value}`);
+    values.push(`${ncomp_input.value}`);
     var lines = document.getElementsByClassName("line");
     for (var i = 0; i < (lines.length-1); (i++)) {
         var lineValues = [];
@@ -138,12 +142,12 @@ downloadButton.onclick = () => {
     var TP_values = [];
     var z_inputs = document.getElementsByClassName("z_input");
     var TP_inputs = document.getElementsByClassName("tp_input");
-    jj = 0
-    kk = 0
-    for (var j = 0; j < (nflash); (j++)) {
+    var jj = 0
+    var kk = 0
+    for (var j = 0; j < (nflash_input.value); (j++)) {
         z_values=[]
         TP_values=[]
-        for (var k = 0; k < nInput.value; k++){
+        for (var k = 0; k < ncomp_input.value; k++){
             if (z_inputs[jj].value == 0){
                 z_values.push(".00000001")
             } else if ((z_inputs[jj].value).includes(".")){
@@ -163,10 +167,6 @@ downloadButton.onclick = () => {
         values.push(z_values.join(","));
     };
 
-        
-    
-  //#endregion
-
     values.push("0,0") //Print end of file
 
     // Create a text file from the values
@@ -181,6 +181,5 @@ downloadButton.onclick = () => {
   
     // Click the link to download the file
     downloadLink.click();
-};
+}
 //#endregion
-*/
