@@ -1,4 +1,5 @@
 import * as gramjs from './gruposram.js'
+
 //#region remover function
 
 export function remover(){
@@ -107,12 +108,14 @@ export function compinput(partable_box){
 //#endregion
 
 //#region Create component table subroutine
-export function comptable(
-    ncomp_input,partable_box){
+export function comptable(ncomp_input,partable_box){
+    
     remover();   
     var ncomp_value = ncomp_input.value; // Number of components
     var maxngroups = 10; // Max number of functional groups per component
     var partable_sel = partable_box.options[partable_box.selectedIndex].value
+    
+    //Set the Group list from the "partable" information.
     var grouplist = ["ERROR"]
     if (partable_sel == 1){
         grouplist = gramjs.grouplist1;
@@ -121,22 +124,15 @@ export function comptable(
         grouplist = gramjs.grouplist2;
     } 
     else grouplist = gramjs.grouplist3;
-
-    //remover();
-
-    
-    
-  
+ 
     // Create maxngroups selection boxes for each ncomp_value line
     for (var i = 0; i < ncomp_value; i++) {
         // Create a container element for each ncomp_value line
         var line = document.createElement("tr");
-        line.className = "line";
+            line.className = "line";
         wrapper_table.appendChild(line);
         
         // Create a label for each Component line
-        //var label = document.createElement("td");
-        //label.textContent = `Component ${(i + 1)}:`;
         var label = document.createElement("td");
             label.textContent = `Component ${(i + 1)}:`;
         var grouplabel =  document.createElement("td");
@@ -171,11 +167,11 @@ export function comptable(
         // Create a label for each Component line
         var label = document.createElement("td");
         var label_input = document.createElement("input");
-        label_input.id = "grouplabel_input";
-        label_input.className = "label_input"
-        label_input.type = "string";
-        label_input.value = "";
-        label_input.setAttribute("size", 10); //Adjust Firefox box size 
+            label_input.id = "grouplabel_input";
+            label_input.className = "label_input"
+            label_input.type = "string";
+            label_input.value = "";
+            label_input.setAttribute("size", 10); //Adjust Firefox box size 
         var numberlabel = document.createElement("td");
             numberlabel.textContent = "Number of groups:";
         
