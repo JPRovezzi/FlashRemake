@@ -99,6 +99,7 @@ var saveconfig_button = document.createElement("input");
     
 //#endregion
 
+
 //#region Create Download Button
 //function makedownload(){
     var div_download = document.getElementById("div_download");
@@ -112,6 +113,7 @@ var saveconfig_button = document.createElement("input");
     div_download.appendChild(downloadButton);
 //}
 //#endregion
+
 
 //#region Download Subroutine
 function download(){

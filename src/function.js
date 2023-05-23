@@ -406,8 +406,6 @@ export function tpztable(nflash_input, ncomp_input){
 
 //#endregion
 
-
-/*
 //#region Create Download Button
 export function makedownload(){
     var div_download = document.getElementById("div_download");
@@ -421,79 +419,6 @@ export function makedownload(){
     div_download.appendChild(downloadButton);
 }
 //#endregion
-
-//#region Download Subroutine
-export function download(){
-    var values = [];
-    
-    var model_box = document.getElementsByClassName("model_box");
-    var model_sel = model_box.options[model_box.selectedIndex].value;
-    var partable_sel = partable_box.options[partable_box.selectedIndex].value;
-
-    values.push(`"${problem_name.value}"`); //Print name of file
-    values.push(
-        `${icalc},${model_sel},${ipr},${iout},${novap},${ig},${partable_sel}`);  
-    
-    values.push(`${nInput.value}`);
-    var lines = document.getElementsByClassName("line");
-    for (var i = 0; i < (lines.length-1); (i++)) {
-        var lineValues = [];
-        var boxes = lines[i].getElementsByClassName("box");
-        var inputs = lines[i+1].getElementsByClassName("input");
-        for (var j = 0; j < boxes.length; j++) {
-            lineValues.push(boxes[j].value);
-            lineValues.push(inputs[j].value);
-        }
-        if (i % 2 == 0)
-        values.push(lineValues.join(","));
-    }
-    
-    var z_values = [];
-    var TP_values = [];
-    var z_inputs = document.getElementsByClassName("z_input");
-    var TP_inputs = document.getElementsByClassName("tp_input");
-    jj = 0
-    kk = 0
-    for (var j = 0; j < (nflash_input.value); (j++)) {
-        z_values=[]
-        TP_values=[]
-        for (var k = 0; k < ncomp_input.value; k++){
-            if (z_inputs[jj].value == 0){
-                z_values.push(".00000001")
-            } else if ((z_inputs[jj].value).includes(".")){
-                z_values.push(z_inputs[jj].value);
-            } else z_values.push(z_inputs[jj].value+".");
-            jj++;
-        }
-        if ((TP_inputs[kk].value).includes(".")){
-                TP_values.push(TP_inputs[kk].value);
-            } else TP_values.push(TP_inputs[kk].value+".");
-        kk++;
-        if ((TP_inputs[kk].value).includes(".")){
-                TP_values.push(TP_inputs[kk].value);
-            } else TP_values.push(TP_inputs[kk].value+".");
-        kk++;
-        values.push(TP_values.join(","));
-        values.push(z_values.join(","));
-    };
-
-    values.push("0,0") //Print end of file
-
-    // Create a text file from the values
-    var textFileAsBlob = new Blob([values.join("\n")], {type: 'text/plain'});
-  
-    // Create a link element to download the file
-    var downloadLink = document.createElement("a");
-    downloadLink.download = problem_name.value+".dat";
-  
-    // Use createObjectURL to create a URL for the file
-    downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
-  
-    // Click the link to download the file
-    downloadLink.click();
-}
-//#endregion
-*/
 
 
 
