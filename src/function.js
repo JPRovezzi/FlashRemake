@@ -79,7 +79,22 @@ export function tpzremover(){
 }
 //#endregion
 
-//#region savealert function
+//-----------------------------------------------------------------------------
+
+//#region Range function
+export function frange(start,end,step){
+    var frange_array = [];
+    for (var i = start; i < end; i++){
+        //console.log(i);
+        frange_array.push(i);
+    }
+    console.log(frange_array.length);
+    return frange_array;
+}
+
+//-----------------------------------------------------------------------------
+
+//#region Savealert function
 export function savealert(
     os_box,model_box,partable_box,problem_name
     ) {
@@ -114,7 +129,7 @@ export function savealert(
 }
 //#endregion
 
-//#region create input box for component table 
+//#region Create input box for component table 
 
 export function compinput(partable_box){
     
@@ -167,13 +182,21 @@ export function comptable(ncomp_input,partable_box){
     
     //Set the Group list from the "partable" information.
     var grouplist = ["ERROR"]
+    var grouplist_index = []
+
     if (partable_sel == 1){
         grouplist = gramjs.grouplist1;
+        grouplist_index = frange(0,grouplist.length,1);
     } 
     else if(partable_sel == 2){
         grouplist = gramjs.grouplist2;
+        console.log(frange(0,grouplist.length,1));
+        grouplist_index = frange(0,grouplist.length,1);
     } 
-    else grouplist = gramjs.grouplist3;
+    else {
+        grouplist = gramjs.grouplist3;
+        grouplist_index = frange(0,grouplist.length,1)
+    } 
  
     // Create maxngroups selection boxes for each ncomp_value line
     for (var i = 0; i < ncomp_value; i++) {
@@ -201,7 +224,7 @@ export function comptable(ncomp_input,partable_box){
             for (var k = 0; k < grouplist.length; k++) { 
                 var option = document.createElement("option");
                 option.value = k;
-                option.text = grouplist[k];
+                option.text = `[${grouplist_index[k]}]`+" "+grouplist[k];
                 box.appendChild(option);
             }
       
@@ -237,9 +260,9 @@ export function comptable(ncomp_input,partable_box){
             ngroup_Input.className = "input"
             ngroup_Input.type = "number";
             ngroup_Input.min = "0";
-            ngroup_Input.max = "100000"; //Also adjust Chromium box size
+            ngroup_Input.max = "100000000"; //Also adjust Chromium box size
             ngroup_Input.value = "0";
-            ngroup_Input.setAttribute("size", 5); //Adjust Firefox box size 
+            ngroup_Input.setAttribute("size", 14); //Adjust Firefox box size 
             
           
             // Append the box to the line
@@ -405,21 +428,6 @@ export function tpztable(nflash_input, ncomp_input){
         };
 
 //#endregion
-
-//#region Create Download Button
-export function makedownload(){
-    var div_download = document.getElementById("div_download");
-    var downloadButton = document.createElement("input");
-        downloadButton.id = "downloadButton";
-        downloadButton.type = "button";
-        downloadButton.value = "Download";
-    
-    // Add an onclick event listener to downloadButton
-    downloadButton.onclick = () => {download()};
-    div_download.appendChild(downloadButton);
-}
-//#endregion
-
 
 
 
