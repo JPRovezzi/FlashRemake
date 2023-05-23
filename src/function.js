@@ -91,6 +91,7 @@ export function frange(start,end,step){
     console.log(frange_array.length);
     return frange_array;
 }
+//#endregion
 
 //-----------------------------------------------------------------------------
 
@@ -302,6 +303,25 @@ export function savecomp(ncomp_input){
 }
 
 
+//#endregion
+
+//#region Count Number and kind of group
+export function countgroup(){
+    var final_array = [[],[]];
+    var temp_array = [[],[]];
+
+    var lines = document.getElementsByClassName("line");
+    for (var i = 0; i < (lines.length-1); (i++)) {
+        var boxes = lines[i].getElementsByClassName("box");
+        var inputs = lines[i+1].getElementsByClassName("input");
+    }
+    for (var j = 0; j < boxes.length; j++) {
+        temp_array[0].push(boxes[j].value);
+        temp_array[1].push(inputs[j].value);
+    }
+    for (var k = 0; k < temp_array.length; k++) {}
+
+}
 //#endregion
 
 //#region create a button to TPZ table
