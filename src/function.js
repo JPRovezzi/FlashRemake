@@ -325,7 +325,6 @@ export function countgroup(){
 
     var groups = document.getElementsByClassName("groupbox");
     var gnums = document.getElementsByClassName("gnumbox");
-    //}
     for (var j = 0; j < groups.length; j++) {
         temp_array[0].push(groups[j].value);
         temp_array[1].push(gnums[j].value);
@@ -343,6 +342,7 @@ export function countgroup(){
     }
     final_array[1].splice(final_array[0].indexOf("0"),1);
     final_array[0].splice(final_array[0].indexOf("0"),1);
+    //console.log(final_array);
     return final_array;
 
 }

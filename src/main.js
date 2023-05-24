@@ -129,6 +129,11 @@ function download(){
         `${icalc},${model_sel},${ipr},${iout},${novap},${ig},${partable_sel}`);  
     
     values.push(`${ncomp_input.value}`);
+    var allgroups=fjs.countgroup();
+    var sumgroups=allgroups[0].length;
+
+    //console.log(totalgnum);
+    values.push(`${sumgroups},${sumgroups*sumgroups}`);
 
     for (var r = 0; r < (ncomp_input.value); (r++)){
         var grouprow = document.getElementById(`${(r+1)}group_tr`);
