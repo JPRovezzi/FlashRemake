@@ -1,5 +1,7 @@
 import * as fjs from './function.js'
 import * as gramjs from './gruposram.js'
+import * as rqpar from './rqpar.js'
+
 //#region Get the problem name element.
 var problem_name = document.getElementById("problem_name");
 //#endregion

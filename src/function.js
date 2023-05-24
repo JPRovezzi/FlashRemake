@@ -88,7 +88,7 @@ export function frange(start,end,step){
         //console.log(i);
         frange_array.push(i);
     }
-    console.log(frange_array.length);
+    //console.log(frange_array.length);
     return frange_array;
 }
 //#endregion
@@ -191,7 +191,7 @@ export function comptable(ncomp_input,partable_box){
     } 
     else if(partable_sel == 2){
         grouplist = gramjs.grouplist2;
-        console.log(frange(0,grouplist.length,1));
+        //console.log(frange(0,grouplist.length,1));
         grouplist_index = frange(0,grouplist.length,1);
     } 
     else {
@@ -297,9 +297,10 @@ export function savecomp(ncomp_input){
             flash_remover();
             tpzremover();
             tpz(ncomp_input);
-            console.log("H");
+            console.log(countgroup());
         }
         savecomp_div.appendChild(savecomp_button);
+        
 }
 
 
@@ -310,16 +311,29 @@ export function countgroup(){
     var final_array = [[],[]];
     var temp_array = [[],[]];
 
-    var lines = document.getElementsByClassName("line");
-    for (var i = 0; i < (lines.length-1); (i++)) {
-        var boxes = lines[i].getElementsByClassName("box");
-        var inputs = lines[i+1].getElementsByClassName("input");
-    }
-    for (var j = 0; j < boxes.length; j++) {
-        temp_array[0].push(boxes[j].value);
+    //var lines = document.getElementsByClassName("line");
+    //for (var i = 0; i < (lines.length-1); (i++)) {
+        var groups = document.getElementsByClassName("box");
+        var inputs = document.getElementsByClassName("input");
+    //}
+    for (var j = 0; j < groups.length; j++) {
+        temp_array[0].push(groups[j].value);
         temp_array[1].push(inputs[j].value);
     }
-    for (var k = 0; k < temp_array.length; k++) {}
+        //console.log(temp_array[0]);
+        //console.log(temp_array[1]);
+    for (var k = 0; k < temp_array[0].length; k++) {
+        if (final_array[0].includes(temp_array[0][k])){
+            var index = final_array[0].indexOf(temp_array[0][k]);
+            final_array[1][index] = final_array[1][index] + parseInt(temp_array[1][k],10); 
+        } else {
+            final_array[0].push(temp_array[0][k]);
+            final_array[1].push(parseInt(temp_array[1][k],10));
+        }
+    }
+    final_array[1].splice(final_array[0].indexOf("0"),1);
+    final_array[0].splice(final_array[0].indexOf("0"),1);
+    return final_array;
 
 }
 //#endregion
