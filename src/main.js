@@ -129,19 +129,36 @@ function download(){
         `${icalc},${model_sel},${ipr},${iout},${novap},${ig},${partable_sel}`);  
     
     values.push(`${ncomp_input.value}`);
-    var lines = document.getElementsByClassName("line");
-    for (var i = 0; i < (lines.length-1); (i++)) {
-        var lineValues = [];
-        var boxes = lines[i].getElementsByClassName("box");
-        var inputs = lines[i+1].getElementsByClassName("input");
-        for (var j = 0; j < boxes.length; j++) {
-            lineValues.push(boxes[j].value);
-            lineValues.push(inputs[j].value);
-        }
-        if (i % 2 == 0)
-        values.push(lineValues.join(","));
-    }
-    
+
+    for (var r = 0; r < (ncomp_input.value); (r++)){
+        var grouprow = document.getElementById(`${(r+1)}group_tr`);
+        //console.log("grouprow");
+        //console.log(grouprow);
+        
+        var groupvalues = [];
+        var groupboxes = grouprow.getElementsByClassName("groupbox");
+        //console.log(groupboxes.length-1);
+        for (var j = 0; j < groupboxes.length; j++) {
+            groupvalues.push(groupboxes[j].value);
+        };
+        var gnumrow = document.getElementById(`${(r+1)}gnum_tr`);
+
+        var gnumvalues = []; 
+        var gnumboxes = gnumrow.getElementsByClassName("gnumbox");
+        //console.log(gnumboxes.length-1);
+        for (var j = 0; j < gnumboxes.length; j++) {
+            gnumvalues.push(gnumboxes[j].value);
+        };
+        //console.log(groupvalues);
+        //console.log(gnumvalues);
+        var compvalues=[];
+        for (var s=0; s<(groupvalues.length);s++){
+            compvalues.push(groupvalues[s]);
+            compvalues.push(gnumvalues[s]);
+        };
+        values.push(compvalues);
+    };
+
     var z_values = [];
     var TP_values = [];
     var z_inputs = document.getElementsByClassName("z_input");

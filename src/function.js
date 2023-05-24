@@ -31,6 +31,14 @@ export function remover(){
     while (line.length > 0) {
         line[0].remove();
     }
+    var grouprows = document.getElementsByClassName("group_tr");
+    while (grouprows.length > 0) {
+        grouprows[0].remove();
+    }
+    var gnumrows = document.getElementsByClassName("gnum_tr");
+    while (gnumrows.length > 0) {
+        gnumrows[0].remove();
+    }
 }
 //#endregion
 
@@ -199,76 +207,80 @@ export function comptable(ncomp_input,partable_box){
         grouplist_index = frange(0,grouplist.length,1)
     } 
  
-    // Create maxngroups selection boxes for each ncomp_value line
+    // Create maxngroups selection boxes for each ncomp_value group row
     for (var i = 0; i < ncomp_value; i++) {
-        // Create a container element for each ncomp_value line
-        var line = document.createElement("tr");
-            line.className = "line";
-        wrapper_table.appendChild(line);
+        // Create a row for group input for each component.
+        var group_tr = document.createElement("tr");
+            group_tr.className = "group_tr";
+            group_tr.id=`${(i+1)}group_tr`;
+        wrapper_table.appendChild(group_tr);
         
-        // Create a label for each Component line
-        var label = document.createElement("td");
-            label.textContent = `Component ${(i + 1)}:`;
-        var grouplabel =  document.createElement("td");
-            grouplabel.textContent = "Group:"
+        // Create a label for each Component group row
+        var complabel_td = document.createElement("td");
+            complabel_td.textContent = `Component ${(i + 1)}:`;
+        // Create text before group selection
+        var grouplabel_td =  document.createElement("td");
+            grouplabel_td.textContent = "Group:"
         
-        line.appendChild(label);
-        line.appendChild(grouplabel);
+        group_tr.appendChild(complabel_td);
+        group_tr.appendChild(grouplabel_td);
     
-        // Create maxngroups selection boxes for each line
+        // Create maxngroups number of group selection boxes for each row
         for (var j = 0; j < maxngroups; j++) {
             // Create a selection box
-            var box_cell = document.createElement("td");
-            var box = document.createElement("select");
-            box.className = "box";
+            var groupbox_td = document.createElement("td");
+            var groupbox = document.createElement("select");
+                groupbox.className = "groupbox";
             // Add the grouplist options for each box
             for (var k = 0; k < grouplist.length; k++) { 
-                var option = document.createElement("option");
-                option.value = k;
-                option.text = `[${grouplist_index[k]}]`+" "+grouplist[k];
-                box.appendChild(option);
+                var groupoption = document.createElement("option");
+                    groupoption.value = k;
+                    groupoption.text = `[${grouplist_index[k]}]`+" "+grouplist[k];
+                groupbox.appendChild(groupoption);
             }
       
-            // Append the box to the line
-            box_cell.appendChild(box);
-            line.appendChild(box_cell);
+            // Append the boxes to the row
+            groupbox_td.appendChild(groupbox);
+            group_tr.appendChild(groupbox_td);
         }
         // Create a container element for each line
-        var line = document.createElement("tr");
-            line.className = "line";
-        wrapper_table.appendChild(line);
+        var gnum_tr = document.createElement("tr");
+            gnum_tr.className = "gnum_tr";
+            gnum_tr.id=`${(i+1)}gnum_tr`;
+        wrapper_table.appendChild(gnum_tr);
     
         // Create a label for each Component line
-        var label = document.createElement("td");
-        var label_input = document.createElement("input");
-            label_input.id = "grouplabel_input";
-            label_input.className = "label_input"
-            label_input.type = "string";
-            label_input.value = "";
-            label_input.setAttribute("size", 10); //Adjust Firefox box size 
-        var numberlabel = document.createElement("td");
-            numberlabel.textContent = "Number of groups:";
+        var compname_td = document.createElement("td");
+        var compname_input = document.createElement("input");
+            compname_input.id = "compname_input";
+            compname_input.className = "compname_input";
+            compname_input.type = "string";
+            compname_input.value = "";
+            compname_input.setAttribute("size", 10); //Adjust Firefox box size 
+        // Create text before the number input
+            var numlabel_td = document.createElement("td");
+            numlabel_td.textContent = "Number of groups:";
         
-        label.appendChild(label_input);
-        line.appendChild(label);      
-        line.appendChild(numberlabel);
+        compname_td.appendChild(compname_input);
+        gnum_tr.appendChild(compname_td);      
+        gnum_tr.appendChild(numlabel_td);
 
         for (var j = 0; j < maxngroups; j++) {
             // Create a selection box
-            var ngroup_cell = document.createElement("td")
-            var ngroup_Input = document.createElement("input");
-            ngroup_Input.id = "ngroup_Input";
-            ngroup_Input.className = "input"
-            ngroup_Input.type = "number";
-            ngroup_Input.min = "0";
-            ngroup_Input.max = "100000000"; //Also adjust Chromium box size
-            ngroup_Input.value = "0";
-            ngroup_Input.setAttribute("size", 14); //Adjust Firefox box size 
+            var gnumbox_td = document.createElement("td")
+            var gnumbox = document.createElement("input");
+                gnumbox.id = "gnumbox";
+                gnumbox.className = "gnumbox"
+                gnumbox.type = "number";
+                gnumbox.min = "0";
+                gnumbox.max = "100000000"; //Also adjust Chromium box size
+                gnumbox.value = "0";
+                gnumbox.setAttribute("size", 14); //Adjust Firefox box size 
             
           
             // Append the box to the line
-            ngroup_cell.appendChild(ngroup_Input);
-            line.appendChild(ngroup_cell);
+            gnumbox_td.appendChild(gnumbox);
+            gnum_tr.appendChild(gnumbox_td);
         }
     }
     var option_size = document.querySelectorAll("option"); //Adjust box size
@@ -311,14 +323,12 @@ export function countgroup(){
     var final_array = [[],[]];
     var temp_array = [[],[]];
 
-    //var lines = document.getElementsByClassName("line");
-    //for (var i = 0; i < (lines.length-1); (i++)) {
-        var groups = document.getElementsByClassName("box");
-        var inputs = document.getElementsByClassName("input");
+    var groups = document.getElementsByClassName("groupbox");
+    var gnums = document.getElementsByClassName("gnumbox");
     //}
     for (var j = 0; j < groups.length; j++) {
         temp_array[0].push(groups[j].value);
-        temp_array[1].push(inputs[j].value);
+        temp_array[1].push(gnums[j].value);
     }
         //console.log(temp_array[0]);
         //console.log(temp_array[1]);
