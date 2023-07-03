@@ -2,10 +2,13 @@ import http.server
 import socketserver
 import webbrowser
 
-PORT = 8100
+PORT = 6900
 
 Handler = http.server.SimpleHTTPRequestHandler
-url = "http://127.0.0.1:8100/Flash.html"
+Handler.extensions_map.update({
+      ".js": "application/javascript",
+})
+url = f"http://127.0.0.1:{PORT}/Flash.html"
 
 # Open URL in a new tab, if a browser window is already open.
 webbrowser.open_new_tab(url)
