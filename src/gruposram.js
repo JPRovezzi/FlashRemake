@@ -142,7 +142,7 @@ var grouplist2 = ["None",
         "(SIH2O)",
         "(SIHO)",
         "(SIO)"
-    ]
+    ];
 var grouplist3 = ["None",
 "(CH3)",
 "(CH2)",
@@ -215,7 +215,6 @@ var grouplist3 = ["None",
 "(DEOH)",
 "(NFM)",
 "(TEG)"
-] 
-;
+];
 
 export {grouplist1,grouplist2,grouplist3};
