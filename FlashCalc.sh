@@ -1,1 +1,1 @@
-python3 RunFlash.py
+python3 OpenServer.py
