@@ -134,6 +134,56 @@ function download(){
 
     //console.log(totalgnum);
     values.push(`${sumgroups},${sumgroups*sumgroups}`);
+    
+    
+    // Imprimir parametros rq
+    var grouplist = [];
+    if (partable_sel == 1){
+        grouplist = gramjs.grouplist1;
+        //grouplist_index = frange(0,grouplist.length,1);
+    } 
+    else if(partable_sel == 2){
+        grouplist = gramjs.grouplist2;
+        //console.log(frange(0,grouplist.length,1));
+        //grouplist_index = frange(0,grouplist.length,1);
+    } 
+    else {
+        grouplist = gramjs.grouplist3;
+        //grouplist_index = frange(0,grouplist.length,1)
+    } ;
+    // Creo una variable temp_group para ir buscando cada valor rq 
+    var temp_index = 0;
+    for (var i=0; i <allgroups[0].length; (i++)){
+        temp_index = (allgroups[0])[i];
+        //console.log("for i=",i);
+        //console.log("temp_index=",temp_index,"equal to ", grouplist[temp_index] ); 
+
+        for (var j=1; j < rqpar.rqparlist.length; (j++)){
+            //console.log("for j=",j);
+            //console.log("Comparing rqpar ",rqpar.rqparlist[j][0],"to group ",grouplist[temp_index]);
+            if (rqpar.rqparlist[j][0] == grouplist[temp_index]){
+                //console.log("It's the same! XD");
+                values.push(`${(allgroups[0])[i]},${rqpar.rqparlist[j][1]},${rqpar.rqparlist[j][2]}`);
+                break;
+            };
+        };
+    };
+    // Ahora sigue imprimir parametros binarios
+    var temp_index = 0;
+    for (var i=0; i <allgroups[0].length; (i++)){
+        for (var j=0; j <allgroups[0].length; (j++)){;
+            console.log("for i=",i);
+            console.log("for j=",j);
+            if (i == j){
+             values.push(`${(allgroups[0])[i]},${(allgroups[0])[j]},0`);
+            } 
+            else {
+                values.push(`${(allgroups[0])[i]},${(allgroups[0])[j]}`);
+            };
+            
+        };
+    };
+
 
     for (var r = 0; r < (ncomp_input.value); (r++)){
         var grouprow = document.getElementById(`${(r+1)}group_tr`);
