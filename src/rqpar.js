@@ -1,5 +1,5 @@
-export var rqpar = [
-    ["Group",   "r",    "q",]
+export var rqparlist = [
+    ["Group",   "r",    "q",],
     ["(CH3)",	0.9011,	0.8480],
     ["(CH2)",	0.6744,	0.5400],
     ["(CH)",	0.4469,	0.2280],
