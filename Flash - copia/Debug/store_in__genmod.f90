@@ -1,9 +1,0 @@
-        !COMPILER-GENERATED INTERFACE MODULE: Mon Jul 23 15:27:21 2018
-        MODULE STORE_IN__genmod
-          INTERFACE 
-            SUBROUTINE STORE_IN(MODEL,NINTT)
-              INTEGER(KIND=4) :: MODEL
-              INTEGER(KIND=4) :: NINTT(70)
-            END SUBROUTINE STORE_IN
-          END INTERFACE 
-        END MODULE STORE_IN__genmod
