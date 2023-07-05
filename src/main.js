@@ -1,6 +1,7 @@
 import * as fjs from './function.js'
 import * as gramjs from './gruposram.js'
 import * as rqpar from './rqpar.js'
+import * as intrcn from './intrcn.js'
 
 //#region Get the problem name element.
 var problem_name = document.getElementById("problem_name");
@@ -138,19 +139,28 @@ function download(){
     
     // Imprimir parametros rq
     var grouplist = [];
+    var groupcat =[];
+    var intrcn_partable =[];
     if (partable_sel == 1){
         grouplist = gramjs.grouplist1;
+        groupcat = intrcn.gram_ll;
+        intrcn_partable = intrcn.ll_table;
         //grouplist_index = frange(0,grouplist.length,1);
     } 
     else if(partable_sel == 2){
         grouplist = gramjs.grouplist2;
+        groupcat = intrcn.gram_vl;
+        intrcn_partable = intrcn.vl_table;
         //console.log(frange(0,grouplist.length,1));
         //grouplist_index = frange(0,grouplist.length,1);
     } 
     else {
         grouplist = gramjs.grouplist3;
+        groupcat = intrcn.gram_inf;
+        intrcn_partable = intrcn.inf_table;
         //grouplist_index = frange(0,grouplist.length,1)
     } ;
+
     // Creo una variable temp_group para ir buscando cada valor rq 
     var temp_index = 0;
     for (var i=0; i <allgroups[0].length; (i++)){
@@ -168,17 +178,34 @@ function download(){
             };
         };
     };
-    // Ahora sigue imprimir parametros binarios
-    var temp_index = 0;
+    // Ahora sigue imprimir parametros de interaccion
+    var temp_index = [0,0];
     for (var i=0; i <allgroups[0].length; (i++)){
         for (var j=0; j <allgroups[0].length; (j++)){;
-            console.log("for i=",i);
-            console.log("for j=",j);
+            temp_index[0] = (allgroups[0])[i];
+            temp_index[1] = (allgroups[0])[j];
+            console.log("for i=",i,"corresponding to ",(allgroups[0])[i],grouplist[temp_index[0]]);
+            console.log("for j=",j,"corresponding to ",(allgroups[0])[j],grouplist[temp_index[1]]);
             if (i == j){
-             values.push(`${(allgroups[0])[i]},${(allgroups[0])[j]},0`);
+                console.log("It is the same!")
+                values.push(`${(allgroups[0])[i]},${(allgroups[0])[j]},0`);
+                //break;
             } 
             else {
-                values.push(`${(allgroups[0])[i]},${(allgroups[0])[j]}`);
+                console.log("Keep going!")
+                for (var k=0; k < groupcat.length; (k++)){
+                    console.log("Let's check if ",grouplist[temp_index[0]],"is in ",groupcat[k])
+                    if(groupcat[k].includes(grouplist[temp_index[0]])){
+                        for (var l=0; l < groupcat.length; (l++)){
+                            if (groupcat[l].includes(grouplist[temp_index[1]])){
+                            values.push(`${(allgroups[0])[i]},${(allgroups[0])[j]},${intrcn_partable[k][l]}`);
+                            break;
+                            };
+                        };
+                        break;
+                    }
+                    
+                };
             };
             
         };
