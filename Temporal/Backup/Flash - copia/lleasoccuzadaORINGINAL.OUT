@@ -1,0 +1,524 @@
+1
+
+
+
+
+ **** FLASH CALCULATION ****
+ MODEL USED FOR LIQUID PHASE NON-IDEALITY: UNIFAC
+
+
+ COMPONENTS :  acido laurico glicerina                                                
+
+
+ SUB GROUPS :  1  2  3 14 23
+ MAIN GROUPS:  1  1  1  5 13
+ COMPONENT
+       1       1 10  0  0  1
+       2       0  2  1  3  0
+
+
+
+ GROUP R- AND Q-VALUES
+
+   1    0.9011    0.8480
+   2    0.6744    0.5400
+   3    0.4469    0.2280
+  14    1.0000    1.2000
+  23    1.3013    1.2240
+
+
+
+  INTERACTION PARAMETERS
+
+        0.000      50.400     260.700
+      387.400       0.000    -143.900
+      284.700     381.500       0.000
+
+ "ASSOC GROUP COMPOSITION" 
+                       COMPONENTES
+ GRUPO 	  #  SIT ASOC      1    2
+
+     1           1        1.0  0.0
+     2           2        0.0  3.0
+
+ PARAMETROS DE ENERGIA DE ASOCIACION (Kelvin)  
+
+  ENASS(   1  1  1  1 ) =  4100.0000
+  ENASS(   1  1  1  2 ) =  3612.5000
+  ENASS(   1  1  2  2 ) =  3612.5000
+  ENASS(   1  2  1  1 ) =  3612.5000
+  ENASS(   2  2  1  1 ) =  3612.5000
+  ENASS(   1  2  1  2 ) =     0.0000
+  ENASS(   1  2  2  2 ) =  3125.0000
+  ENASS(   2  2  1  2 ) =  3125.0000
+  ENASS(   2  2  2  2 ) =     0.0000
+
+ PARAMETROS DE VOLUMEN DE ASOCIACIÓN (cm3/mol) 
+
+  RKASS(   1  1  1  1 ) =     0.0020
+  RKASS(   1  1  1  2 ) =     0.0035
+  RKASS(   1  1  2  2 ) =     0.0035
+  RKASS(   1  2  1  1 ) =     0.0035
+  RKASS(   2  2  1  1 ) =     0.0035
+  RKASS(   1  2  1  2 ) =     0.0000
+  RKASS(   1  2  2  2 ) =     0.0062
+  RKASS(   2  2  1  2 ) =     0.0062
+  RKASS(   2  2  2  2 ) =     0.0000
+
+
+
+ UNIFAC MOLECULAR R AND Q
+
+    1         8.9464         7.4720
+    2         4.7957         4.9080
+
+
+
+ * * * FLASH NUMBER  1 * * *
+
+
+ TEMPERATURE =  313.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 47.712            2 52.288
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00266068          0.95382252
+  ln(G 1)                      5.88125848         -0.00063928
+   X( 2)                      0.99733932          0.04617748
+  ln(G 2)                      0.00007081          3.07266974
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER  2 * * *
+
+
+ TEMPERATURE =  323.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 47.583            2 52.417
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00293220          0.95123064
+  ln(G 1)                      5.78159719         -0.00040608
+   X( 2)                      0.99706780          0.04876936
+  ln(G 2)                      0.00008453          3.01780113
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER  3 * * *
+
+
+ TEMPERATURE =  333.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 47.434            2 52.566
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00324448          0.94825996
+  ln(G 1)                      5.67754854         -0.00012415
+   X( 2)                      0.99675552          0.05174004
+  ln(G 2)                      0.00010170          2.95837526
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER  4 * * *
+
+
+ TEMPERATURE =  343.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 47.265            2 52.735
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00360269          0.94491182
+  ln(G 1)                      5.56963394          0.00022195
+   X( 2)                      0.99639731          0.05508818
+  ln(G 2)                      0.00012316          2.89533412
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER  5 * * *
+
+
+ TEMPERATURE =  353.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 47.076            2 52.924
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00401249          0.94118623
+  ln(G 1)                      5.45837802          0.00064877
+   X( 2)                      0.99598751          0.05881377
+  ln(G 2)                      0.00015001          2.82950871
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER  6 * * *
+
+
+ TEMPERATURE =  363.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 46.867            2 53.133
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00448010          0.93708210
+  ln(G 1)                      5.34430018          0.00117401
+   X( 2)                      0.99551990          0.06291790
+  ln(G 2)                      0.00018355          2.76161801
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER  7 * * *
+
+
+ TEMPERATURE =  373.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 46.637            2 53.363
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00501224          0.93259738
+  ln(G 1)                      5.22790649          0.00181653
+   X( 2)                      0.99498776          0.06740262
+  ln(G 2)                      0.00022541          2.69227192
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER  8 * * *
+
+
+ TEMPERATURE =  383.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 46.386            2 53.614
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00561619          0.92772895
+  ln(G 1)                      5.10968238          0.00259628
+   X( 2)                      0.99438381          0.07227105
+  ln(G 2)                      0.00027755          2.62197722
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER  9 * * *
+
+
+ TEMPERATURE =  393.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 46.113            2 53.887
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00629972          0.92247256
+  ln(G 1)                      4.99008635          0.00353416
+   X( 2)                      0.99370028          0.07752744
+  ln(G 2)                      0.00034236          2.55114608
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER 10 * * *
+
+
+ TEMPERATURE =  403.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 45.817            2 54.183
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00707114          0.91682262
+  ln(G 1)                      4.86954485          0.00465197
+   X( 2)                      0.99292886          0.08317738
+  ln(G 2)                      0.00042268          2.48010624
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER 11 * * *
+
+
+ TEMPERATURE =  413.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 45.498            2 54.502
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00793923          0.91077207
+  ln(G 1)                      4.74844849          0.00597233
+   X( 2)                      0.99206077          0.08922793
+  ln(G 2)                      0.00052194          2.40911218
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER 12 * * *
+
+
+ TEMPERATURE =  423.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 45.154            2 54.846
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.00891329          0.90431232
+  ln(G 1)                      4.62714952          0.00751863
+   X( 2)                      0.99108671          0.09568768
+  ln(G 2)                      0.00064414          2.33835666
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER 13 * * *
+
+
+ TEMPERATURE =  433.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 44.785            2 55.215
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.01000308          0.89743326
+  ln(G 1)                      4.50596048          0.00931511
+   X( 2)                      0.98999692          0.10256674
+  ln(G 2)                      0.00079404          2.26798212
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER 14 * * *
+
+
+ TEMPERATURE =  443.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 44.387            2 55.613
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.01121882          0.89012331
+  ln(G 1)                      4.38515415          0.01138691
+   X( 2)                      0.98878118          0.10987669
+  ln(G 2)                      0.00097717          2.19809150
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER 15 * * *
+
+
+ TEMPERATURE =  453.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 43.961            2 56.039
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.01257118          0.88236974
+  ln(G 1)                      4.26496425          0.01376024
+   X( 2)                      0.98742882          0.11763026
+  ln(G 2)                      0.00119993          2.12875803
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER 16 * * *
+
+
+ TEMPERATURE =  463.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 43.502            2 56.498
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.01407131          0.87415892
+  ln(G 1)                      4.14558712          0.01646258
+   X( 2)                      0.98592869          0.12584108
+  ln(G 2)                      0.00146972          2.06003389
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER 17 * * *
+
+
+ TEMPERATURE =  473.1500 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 43.010            2 56.990
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.01573078          0.86547673
+  ln(G 1)                      4.02718389          0.01952293
+   X( 2)                      0.98426922          0.13452327
+  ln(G 2)                      0.00179502          1.99195730
+
+ * SYSTEM IS STABLE *
+
+
+
+
+ * * * FLASH NUMBER 18 * * *
+
+
+ TEMPERATURE =  483.1500 K, PRESSURE =  1.000 ATM, FEED =      0.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  NaN    NaN   
