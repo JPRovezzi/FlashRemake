@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Example</title>
+
+    <script>
+        // define a function that sends a request to the server
+        function sendRequest() {
+            // create an XMLHttpRequest object
+            var xhr = new XMLHttpRequest();
+
+            // specify the request method and URL
+            xhr.open("POST", "command.py");
+
+            // send the request
+            xhr.send();
+        }
+    </script>
+
+<form action="command.py">
+    <input type="submit" value="Click Me!">
+  </form>
+</head>
+
+<body>
+   <button onclick="sendRequest()">Click me (2)</button>
+</body>
+
+
+</html>
+
