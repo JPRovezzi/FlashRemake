@@ -1,5 +1,4 @@
 @echo off
 @echo on
-python manage.py migrate
-python manage.py runserver
+python server.py
 pause
