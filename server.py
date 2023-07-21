@@ -23,10 +23,16 @@ webbrowser.open_new_tab(url)
 webbrowser.open_new(url)
 
 # Run migration in Django
-os.system("python3 manage.py migrate")
+try:
+    os.system("python manage.py migrate")
+except: 
+    os.system("python3 manage.py migrate")
 
 # Run Django server
-os.system(f"python3 manage.py runserver {PORT}")
+try:
+    os.system(f"python manage.py runserver {PORT}")
+except:
+    os.system(f"python3 manage.py runserver {PORT}")
 
 
 
