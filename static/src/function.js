@@ -150,7 +150,7 @@ export function compinput(partable_box){
     var tpz_table = document.getElementById("tpz_table");
 
     // Create a label for the n_components input box
-        complabel_td.textContent = "Number of components:"
+        complabel_td.textContent = "Set the number of components:"
         //complabel_td.className = "button"
 
     // Create an input box for n_components
@@ -304,7 +304,7 @@ export function savecomp(ncomp_input){
         savecomp_button.className = "button"
         savecomp_button.id = "saveconfig_button";
         savecomp_button.type = "button";
-        savecomp_button.value = "Save";
+        savecomp_button.value = "Save and continue";
         savecomp_button.onclick = () => {
             flash_remover();
             tpzremover();
@@ -352,7 +352,7 @@ export function countgroup(){
 export function tpz(ncomp_input){
     var flashlabel_td = document.getElementById("flashlabel_td");
         //flashlabel_td.className = "tpz_line"
-        flashlabel_td.textContent = "# of flash calculations:";
+        flashlabel_td.textContent = "Set the number of flash calculations:";
 
     var nflash_input = document.createElement("input");
         nflash_input.id = "nflash_input";

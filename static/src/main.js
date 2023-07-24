@@ -91,7 +91,7 @@ var saveconfig_div = document.getElementById("saveconfig_div");
 var saveconfig_button = document.createElement("input");
     saveconfig_button.id = "saveconfig_button";
     saveconfig_button.type = "button";
-    saveconfig_button.value = "Save";
+    saveconfig_button.value = "Save and continue";
     saveconfig_button.onclick = () => {
         fjs.compremover();
         fjs.savealert(
