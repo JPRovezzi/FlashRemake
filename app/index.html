@@ -2,13 +2,23 @@
 <!DOCTYPE html>
 
 <html>
-<head>
   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <head>
+    <table style="margin-left: auto; margin-right: auto;" border="0">
+      <!-- Create rows -->
+      <tr>
+        <!-- Create cells in each row -->
+        <td><h1 style="text-align: center;">"Flash-Calc"</h1></td>
+        <td><img src="{% static 'images/flashcalc.jpeg' %}" alt="Flashcalc_logo" width="100" height="100"></td>
+      </tr>
+    </table>
 </head>
 <body>
 
 <!--Title-->
-<h1 style="text-align: center;">"Flash-Calc"</h1>
+  
+
+
 <!--Problem-->
 <table>
     <tr>
@@ -91,6 +101,10 @@
 </div>
 <script type="module" src="{% static 'src/main.js' %}"> 
 </script>
+<form method="post" action="/run_flash" target="_blank">
+  {% csrf_token %}
+  <button type="submit">Run batch file</button>
+</form>
 </body>
 
 </html>
