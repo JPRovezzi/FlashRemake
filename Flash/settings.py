@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
+import socket
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,7 +27,7 @@ SECRET_KEY = 'django-insecure-)kh2lom5j^##qw0z@*t1y66ea3)yq62*kq@5$-ckkxpxutek8#
 DEBUG = True
 
 #ALLOWED_HOSTS = [] # Default
-ALLOWED_HOSTS = ['*']  # Allow connections
+ALLOWED_HOSTS = ['*',".ngrok.io"]  # Allow connections
 
 
 # Application definition
@@ -123,3 +124,8 @@ STATICFILES_DIRS = [BASE_DIR/'static']
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#add ngrok website
+
+CSRF_TRUSTED_ORIGINS = ['https://4a2c-200-16-16-13.ngrok-free.app'] 
