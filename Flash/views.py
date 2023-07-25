@@ -6,6 +6,8 @@ import os
 
 def index(request):
     return render(request, "app/index.html")
+def new(request):
+    return render(request, "app/new.html")
 def sample (request):
     # Write your python script code here
     output = "code output"
