@@ -22,4 +22,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path('admin/', admin.site.urls),
     path('sample/', views.sample, name='sample'),
+    path('run_flash', views.run_flash),
 ]
