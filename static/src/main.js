@@ -8,6 +8,7 @@ var problem_name = document.getElementById("problem_name");
 //#endregion
 
 //#region Get the os element selection box.
+/*
 var os_td = document.getElementById("os_td");
 var os_box = document.createElement("select");
     os_box.className = "os_box";
@@ -22,7 +23,7 @@ var os_option = document.createElement("option");
 
 os_box.appendChild(os_option);
 os_td.appendChild(os_box);
-
+*/
 //#endregion
 
 //#region Get the model element selection box.

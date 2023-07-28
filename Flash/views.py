@@ -4,10 +4,15 @@ from django.shortcuts import render
 import subprocess
 import os
 
+#HTML
 def index(request):
     return render(request, "app/index.html")
 def new(request):
     return render(request, "app/new.html")
+def new_help(request):
+    return render(request, "app/new_help.html")
+
+#Functions
 def sample (request):
     # Write your python script code here
     output = "code output"

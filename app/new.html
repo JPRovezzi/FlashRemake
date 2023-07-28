@@ -4,6 +4,13 @@
 <html>
   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
   <head>
+  <!--Links-->
+    <form method="post" action="index">
+      {% csrf_token %}
+      <button type="submit">Back to main menu</button>
+
+<!--Title-->
+    </form></td>
     <table style="margin-left: auto; margin-right: auto;" border="0">
       <!-- Create rows -->
       <tr>
@@ -14,11 +21,7 @@
     </table>
 </head>
 <body>
-
-<!--Title-->
   
-
-
 <!--Problem-->
 <table>
     <tr>
@@ -42,8 +45,8 @@
         <td></td>
       </tr>
     <tr>
-      <td>OS:</td>
-      <td id="os_td"></td>
+      <!--<td>OS:</td>
+      <td id="os_td"></td>-->
     </tr>
     <tr>
       <td>Model:</td>
@@ -105,6 +108,7 @@
   {% csrf_token %}
   <button type="submit">Run batch file</button>
 </form>
+
 </body>
 
 </html>

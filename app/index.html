@@ -20,19 +20,33 @@
                 <!-- Create rows -->
                 <tr>
                     <!-- Create cells in each row -->
-                    <td><form method="post" action="new">
-                        {% csrf_token %}
-                        <button type="submit">New File</button>
-                      </form></td>
-                    <td id="sep">
-                        <script>
-                        var spaces = "⠀".repeat(10);
-                        var sep_td = document.getElementById("sep");
-                        sep.textContent = spaces;
-                        </script>
+                    <td>
+                        <form method="post" action="new">
+                            {% csrf_token %}
+                            <button type="submit">New File</button>
+                        </form>
                     </td>
-                    <td>Load file</td>
+                    <td>
+                        <form method="post" action="" target="_blank">
+                            {% csrf_token %}
+                            <button type="submit">Load File</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="new_help" target="_blank">
+                            {% csrf_token %}
+                            <button type="submit">Help</button>
+                        </form>
+                    </td>
                 </tr>
-            </table>  
+            </table> 
     </body>
-
+<!--
+    <td id="sep">
+        <script>
+        var spaces = "⠀".repeat(10);
+        var sep_td = document.getElementById("sep");
+        sep.textContent = spaces;
+        </script>
+    </td>
+-->

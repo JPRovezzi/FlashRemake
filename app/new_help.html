@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <head>
+    <!--Style-->
+    <style>
+        h1 {
+          text-align: center;
+          font-weight: bold;
+          text-decoration:underline;
+        }
+        
+        h2 {
+          text-align: left;
+        }
+        
+        h3 {
+          text-align: right;
+        }
+    </style>
+    <!--Links-->
+    <form method="post" action="index">
+      {% csrf_token %}
+      <button type="submit">Back to main menu</button>
+
+<!--Title-->
+    </form></td>
+    <table style="margin-left: auto; margin-right: auto;" border="0">
+      <!-- Create rows -->
+      <tr>
+        <!-- Create cells in each row -->
+        <td><h1 style="text-align: center;">Flash-Calc</h1></td>
+        <td><img src="{% static 'images/flashcalc.jpeg' %}" alt="Flashcalc_logo" width="100" height="100"></td>
+      </tr>
+    </table>
+    <hr>
+        <h1>Tutorial</h1>
+        
+    </head>
+    <body>
+        <!--Index-->
+        <h2>Índice</h2>
+       
+          <h2>Elección del modelo, tabla de parámetros y cantidad de componentes del sistema</h2>         
+          <p>
+          Para comenzar con la carga de datos hay que definir el nombre del
+          problema. Luego se debe seleccionar el modelo termodinámico (UNIFAC o A-UNIFAC), la tabla de parámetros e indicar la cantidad de componentes del sistema. Una vez indicada esta información, dar click en el botón “OK”.
+          </p> 
+          <h2>Carga de grupos</h2>
+           <p>
+          Luego del paso anterior aparecerán dos tablas. La primera indicando la información del modelo, la tabla de parámetros seleccionada y la cantidad de componentes. 
+           
+          
+          En la segunda tabla se deberá indicar el tipo y la cantidad de grupos que conformen a cada compuesto. Para seleccionar el tipo de grupo, posicionarse en la primer celda con la palabra “Choose”. Al hacerlo, aparecerá a la derecha un botón que permite desplegar la lista de grupos que pueden ser seleccionados. Seleccionar el grupo deseado y en la celda inmediatamente inferior indicar la cantidad de este grupo presentes en la molécula. 
+           
+          El siguiente ejemplo muestra la carga de grupos correspondientes a la molécula de 1-butanol. (Nota: opcionalmente, puede reemplazarse el texto “Component 1” de la primer celda de la fila por el nombre del compuesto)
+           
+          Para finalizar con el ejemplo de la carga de componentes, se escoge al agua como segundo compuesto del sistema.
+           
+          Tabla de parámetros 
+          Para cargar y ver los valores de los parámetros de los grupos elegidos, hacer click en el botón “2-Parameters”. (Nota: presionar la tecla “Enter” para cerrar la consola emergente)
+           
+          Las primeras dos filas de la tabla contienen los valores de los parámetros moleculares r y q, respectivamente. Las siguientes filas muestran la matriz de parámetros de interacción para los grupos elegidos. Las últimas dos filas indican la composición grupal de cada molécula. (Nota: si se desea, pueden modificarse los valores tanto de los parámetros moleculares como los de interacción)
+          Condiciones del sistema
+          Finalmente, en la última tabla que muestra la planilla, debe indicarse la temperatura (grados Kelvin), presión (atm) y composición del sistema.
+           
+          
+          Luego de haber cargado esta información, hacer click en el botón “3- Run Flash”
+           
+          Esta acción ejecutará el programa “flash.exe”. La información que devuelva el programa se mostrará en una tabla a la derecha de la de las condiciones del flash
+           
+          
+          </p>
+    </body>
