@@ -96,7 +96,8 @@ var saveconfig_button = document.createElement("input");
     saveconfig_button.onclick = () => {
         fjs.compremover();
         fjs.savealert(
-            os_box,model_box,partable_box,problem_name);
+            //os_box,model_box,partable_box,problem_name);
+            model_box,partable_box,problem_name);
         
     }
     saveconfig_div.appendChild(saveconfig_button);
