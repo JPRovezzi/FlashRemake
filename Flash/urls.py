@@ -23,6 +23,7 @@ urlpatterns = [
     path("index", views.index, name="index"),
     path("new", views.new, name="new"),
     path("new_help", views.new_help, name="new_help"),
+    path("WiP", views.WiP, name="WiP"),
     path('admin/', admin.site.urls),
     path('sample/', views.sample, name='sample'),
     path('run_flash', views.run_flash),

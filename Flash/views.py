@@ -11,6 +11,8 @@ def new(request):
     return render(request, "app/new.html")
 def new_help(request):
     return render(request, "app/new_help.html")
+def WiP(request):
+    return render(request, "app/WiP.html")
 
 #Functions
 def sample (request):

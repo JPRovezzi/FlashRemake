@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <head>
+            <!--Links-->
+    <form method="post" action="index">
+        {% csrf_token %}
+        <button type="submit">Back to main menu</button>
+        <h1 style="text-align: center;">Ups! We are working on this site</h1>
+        <br>
+        <table style="margin-left: auto; margin-right: auto;" border="0">
+            <!-- Create rows -->
+            <tr>
+                <!-- Create cells in each row -->
+                <td><img src="{% static 'images/flashcalc_WiP.jpeg' %}" alt="Flashcalc_logo" width="300" height="300"></td>
+            </tr>
+        </table>
+    </head>
