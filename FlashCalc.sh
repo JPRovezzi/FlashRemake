@@ -1,1 +1,1 @@
-python3 OpenServer.py
+python3 server.py

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <head>
+        <h1 style="text-align: center;">Welcome to Flash-Calc</h1>
+        <br>
+        <table style="margin-left: auto; margin-right: auto;" border="0">
+            <!-- Create rows -->
+            <tr>
+                <!-- Create cells in each row -->
+                <td><img src="{% static 'images/flashcalc.jpeg' %}" alt="Flashcalc_logo" width="300" height="300"></td>
+            </tr>
+        </table>
+    </head>
+    <body>
+        <!-- Preserves the space character-->
+            <table style="margin-left: auto; margin-right: auto;" border="1">
+                <!-- Create rows -->
+                <tr>
+                    <!-- Create cells in each row -->
+                    <td>
+                        <form method="post" action="new">
+                            {% csrf_token %}
+                            <button type="submit">New File</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="WiP">
+                            {% csrf_token %}
+                            <button type="submit">Load File</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="new_help" target="_blank">
+                            {% csrf_token %}
+                            <button type="submit">Help</button>
+                        </form>
+                    </td>
+                </tr>
+            </table> 
+    </body>
+<!--
+    <td id="sep">
+        <script>
+        var spaces = "⠀".repeat(10);
+        var sep_td = document.getElementById("sep");
+        sep.textContent = spaces;
+        </script>
+    </td>
+-->

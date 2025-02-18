@@ -1,0 +1,80 @@
+1
+
+
+
+
+ **** FLASH CALCULATION ****
+ COMPONENTS : "llecalas2"                                                             
+
+
+ SUB GROUPS :  1  2 15
+ MAIN GROUPS:  1  1  5
+ COMPONENT
+       1       2 15  0
+       2       1  3  1
+
+
+
+ GROUP R- AND Q-VALUES
+
+   1    0.9011    0.8480
+   2    0.6744    0.5400
+  15    3.2499    3.1280
+
+
+
+  INTERACTION PARAMETERS
+
+        0.000     644.600
+      328.200       0.000
+
+ "ASSOC GROUP COMPOSITION" 
+                       COMPONENTES
+ GRUPO 	  #  SIT ASOC      1    2
+
+     1           2        0.0  1.0
+
+ PARAMETROS DE ENERGIA DE ASOCIACION (Kelvin)  
+
+  ENASS(   1  1  1  1 ) =     0.0000
+  ENASS(   1  1  2  1 ) =  3125.0000
+  ENASS(   2  1  1  1 ) =  3125.0000
+  ENASS(   2  1  2  1 ) =     0.0000
+
+ PARAMETROS DE VOLUMEN DE ASOCIACIÓN (cm3/mol) 
+
+  RKASS(   1  1  1  1 ) =     0.0000
+  RKASS(   1  1  2  1 ) =     0.0062
+  RKASS(   2  1  1  1 ) =     0.0062
+  RKASS(   2  1  2  1 ) =     0.0000
+
+
+
+    1        11.9182         9.7960
+    2         6.1742         5.5960
+
+
+
+ * * * FLASH NUMBER  1 * * *
+
+
+ TEMPERATURE =  323.0000 K, PRESSURE =  1.000 ATM, FEED =      1.00 MOLES
+ FEED COMPOSITION (MOLE PERCENT):
+  50.000 50.000
+
+ SYSTEM IS UNSTABLE, PHASE SPLIT PERFORMED
+ NO VAPOR PHASE
+
+
+ RESULT OF 2-PHASE CALCULATION:
+
+  PHASE FRACTIONS (PERCENT):       1 49.996            2 50.004
+
+  COMPOSITION                      1                   2
+   X( 1)                      0.99960350          0.00047007
+  ln(G 1)                      0.00000235          7.66224006
+   X( 2)                      0.00039650          0.99952993
+  ln(G 2)                      7.83235601          0.00000229
+
+ * SYSTEM IS STABLE *
+

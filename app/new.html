@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html>
+  <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+  <head>
+  <!--Links-->
+    <form method="post" action="index">
+      {% csrf_token %}
+      <button type="submit">Back to main menu</button>
+
+<!--Title-->
+    </form></td>
+    <table style="margin-left: auto; margin-right: auto;" border="0">
+      <!-- Create rows -->
+      <tr>
+        <!-- Create cells in each row -->
+        <td><h1 style="text-align: center;">Flash-Calc</h1></td>
+        <td><img src="{% static 'images/flashcalc.jpeg' %}" alt="Flashcalc_logo" width="100" height="100"></td>
+      </tr>
+    </table>
+</head>
+<body>
+  
+<!--Problem-->
+<table>
+    <tr>
+        <td>Problem name:</td>
+        <td>
+          <input type="text"  id="problem_name" name="name" value="llecalas2">
+        </td>
+        <td>
+            <button onClick="window.location.reload ();">Restart
+            </button>
+        </td>
+    </tr>
+</table>
+
+<br>
+<table>
+    <!-- Create rows -->
+    <tr>
+        <!-- Create cells in each row -->
+        <td>Configuration:</td>
+        <td></td>
+      </tr>
+    <tr>
+      <!--<td>OS:</td>
+      <td id="os_td"></td>-->
+    </tr>
+    <tr>
+      <td>Model:</td>
+      <td id="model_td"></td>
+    </tr>
+    <tr>
+      <td>Parameter table:</td>
+      <td id="partable_td"></td>
+    </tr>
+  </table>
+<br>
+<div id="saveconfig_div">
+</div>
+<br>
+<table id="ncomp_table">
+    <tr>
+        <td id=complabel_td></td>
+        <td id="ncomp_td"></td>
+        <td id="comptable_td"></td>
+    </tr>
+</table>
+<table id="wrapper_table">
+</table>
+<br>
+<div id="savecomp_div">
+</div>
+<br >
+<table id="rqtable">
+  <tr id="rqhead_tr">
+  </tr>
+  <tr id="r_tr">
+  </tr>
+  <tr id="q_tr">
+  </tr>
+</table>
+<br>
+<table id="nflash_table">
+    <tr>
+        <td id=flashlabel_td></td>
+        <td id="nflash_td"></td>
+        <td id="flashtable_td"></td>
+    </tr>
+</table>
+<table id="tpz_table">
+</table>
+<br>
+<br>
+<br>
+<p>Comments:</p> 
+<textarea id="comment" name="comment" rows="4" cols="50">
+</textarea>
+<br>
+<br>
+<div id="div_download">
+</div>
+<script type="module" src="{% static 'src/main.js' %}"> 
+</script>
+<form method="post" action="/run_flash" target="_blank">
+  {% csrf_token %}
+  <button type="submit">Run batch file</button>
+</form>
+
+</body>
+
+</html>
