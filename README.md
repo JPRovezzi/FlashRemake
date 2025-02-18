@@ -2,6 +2,10 @@
 
 FlashRemake is a web-based remake of the original FlashCalc Excel sheet. This project aims to provide the same functionality as the Excel version but in a more accessible and user-friendly web format.
 
+## Purpose
+
+FlashRemake is designed to perform flash calculations, which are essential in chemical engineering. Flash calculations determine the equilibrium state of a liquid and vapor mixture when it is subjected to a change in pressure or temperature. These calculations are crucial for designing and operating equipment like distillation columns, evaporators, and flash drums.
+
 ## Technologies Used
 
 - **HTML**: For structuring the web pages.
